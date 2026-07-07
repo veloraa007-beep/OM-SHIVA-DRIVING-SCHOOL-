@@ -56,10 +56,10 @@ export function Navbar() {
       {/* Main Navbar */}
       <header
         className={cn(
-          "fixed top-[32px] w-full z-50 transition-all duration-300",
+          "fixed top-[32px] w-full z-50 transition-all duration-500",
           isScrolled
-            ? "glass-card py-3 shadow-sm"
-            : "bg-white/80 backdrop-blur-sm py-4"
+            ? "bg-white/90 backdrop-blur-md py-3 shadow-sm border-b border-slate-200/50"
+            : "bg-transparent py-5"
         )}
       >
         <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
