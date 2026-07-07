@@ -1,31 +1,21 @@
 import Link from "next/link";
 import { MapPin, Phone, Clock } from "lucide-react";
 
-const targetAreas = [
-  "Peenya",
-  "Chokkasandra",
-  "Jalahalli",
-  "Jalahalli Cross",
-  "Nagasandra",
-  "Dasarahalli",
-  "BEL Circle",
-  "T. Dasarahalli",
-  "HMT Layout",
-  "Yeshwanthpur",
-  "Mathikere",
-  "Bagalakunte",
-  "Nelagadaranahalli",
+const targetLocations = [
+  { name: "Peenya Driving School", href: "/location/peenya" },
+  { name: "Jalahalli Driving School", href: "/location/jalahalli" },
+  { name: "Dasarahalli Driving School", href: "/location/dasarahalli" },
+  { name: "Chokkasandra Driving School", href: "/location/chokkasandra" },
+  { name: "Nagasandra Driving School", href: "/location/nagasandra" },
 ];
 
 const services = [
-  "Beginner Driving Classes",
-  "Car Driving Training",
-  "Refresher Driving Course",
-  "Defensive Driving Training",
-  "Driving License Assistance",
-  "RTO Documentation Support",
-  "Road Test Preparation",
-  "Flexible Class Scheduling",
+  { name: "Beginner Driving Classes", href: "/courses" },
+  { name: "Refresher Driving Course", href: "/courses" },
+  { name: "Defensive Driving Training", href: "/courses" },
+  { name: "Driving License Assistance", href: "/license-assistance" },
+  { name: "RTO Documentation Support", href: "/license-assistance" },
+  { name: "Road Test Preparation", href: "/license-assistance" },
 ];
 
 const InstagramIcon = ({ className }: { className?: string }) => (
@@ -91,27 +81,32 @@ export function Footer() {
               </h4>
               <ul className="space-y-3">
                 {services.map((service) => (
-                  <li key={service}>
+                  <li key={service.name}>
                     <Link
-                      href="/courses"
+                      href={service.href}
                       className="text-gray-400 hover:text-white transition-colors text-sm"
                     >
-                      {service}
+                      {service.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Areas We Serve */}
+            {/* Areas We Serve (Location Pages) */}
             <div>
               <h4 className="font-heading font-semibold text-lg mb-6">
-                Areas We Serve
+                Target Locations
               </h4>
-              <ul className="space-y-2">
-                {targetAreas.map((area) => (
-                  <li key={area}>
-                    <span className="text-gray-400 text-sm">{area}</span>
+              <ul className="space-y-3">
+                {targetLocations.map((loc) => (
+                  <li key={loc.name}>
+                    <Link
+                      href={loc.href}
+                      className="text-gray-400 hover:text-white transition-colors text-sm"
+                    >
+                      {loc.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -167,13 +162,13 @@ export function Footer() {
             
             <div className="flex gap-6">
               <Link
-                href="#"
+                href="/privacy-policy"
                 className="hover:text-white transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href="/terms-of-service"
                 className="hover:text-white transition-colors"
               >
                 Terms of Service

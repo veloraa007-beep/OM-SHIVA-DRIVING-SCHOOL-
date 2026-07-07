@@ -10,6 +10,10 @@ import { cn } from "@/lib/utils";
 const links = [
   { name: "Home", href: "/" },
   { name: "Courses", href: "/courses" },
+  { name: "License Support", href: "/license-assistance" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Reviews", href: "/reviews" },
+  { name: "FAQ", href: "/faq" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -34,10 +38,10 @@ export function Navbar() {
           <div className="flex items-center gap-1.5">
             <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
             <span className="font-semibold">4.9★</span>
-            <span className="text-white/70 hidden sm:inline">· 200+ Google Reviews</span>
+            <span className="text-white/70 hidden sm:inline">· 200+ Verified Google Reviews</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-white/70 hidden md:inline">Mon–Sun 6AM–8PM</span>
+            <span className="text-white/70 hidden md:inline">Mon–Sun 6:00 AM – 8:00 PM</span>
             <Link
               href="tel:+919535704871"
               className="flex items-center gap-1.5 hover:text-accent transition-colors font-medium"
@@ -69,12 +73,12 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden xl:flex items-center gap-6">
             {links.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative text-sm font-medium text-foreground/70 hover:text-primary transition-colors group"
+                className="relative text-xs font-semibold text-foreground/70 hover:text-primary transition-colors group"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent rounded-full transition-all duration-300 group-hover:w-full" />
@@ -92,7 +96,7 @@ export function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden p-2 text-primary"
+            className="xl:hidden p-2 text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -107,7 +111,7 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden md:hidden bg-white border-t border-slate-100"
+              className="overflow-hidden xl:hidden bg-white border-t border-slate-100"
             >
               <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
                 {links.map((link) => (
@@ -115,7 +119,7 @@ export function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-lg font-medium text-foreground py-3 px-4 rounded-xl hover:bg-slate-50 transition-colors"
+                    className="text-base font-medium text-foreground py-2.5 px-4 rounded-xl hover:bg-slate-50 transition-colors"
                   >
                     {link.name}
                   </Link>
