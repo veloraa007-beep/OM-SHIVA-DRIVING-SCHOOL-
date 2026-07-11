@@ -3,7 +3,6 @@ import { TrustBar } from "@/components/sections/trust-bar";
 import { AboutSection } from "@/components/sections/about";
 import { TimelineSection } from "@/components/sections/timeline";
 import { FleetSection } from "@/components/sections/fleet";
-import { TrainersSection } from "@/components/sections/trainers";
 import { WhyChooseUsSection } from "@/components/sections/why-choose-us";
 import { TestimonialsSection } from "@/components/sections/testimonials";
 import { FAQSection } from "@/components/sections/faq";
@@ -29,7 +28,6 @@ export default function Home() {
       <AboutSection />
       <TimelineSection />
       <FleetSection />
-      <TrainersSection />
       <WhyChooseUsSection />
       <TestimonialsSection />
       <FAQSection />

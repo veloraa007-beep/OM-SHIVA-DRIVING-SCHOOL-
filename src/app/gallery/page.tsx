@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Image as ImageIcon, Car, MapPin, Award, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -12,37 +13,43 @@ const galleryItems = [
     title: "Maruti Suzuki Swift",
     category: "Training Fleet",
     desc: "Equipped with professional dual-control brake & clutch systems for absolute beginner safety.",
-    aspect: "Manual Petrol Hatchback"
+    aspect: "Manual Petrol Hatchback",
+    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80"
   },
   {
     title: "Maruti Suzuki Brezza (2025)",
     category: "Training Fleet",
     desc: "Learn to drive a modern SUV. Features high visibility, parking sensors, and easy controls.",
-    aspect: "New SUV Model"
+    aspect: "New SUV Model",
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"
   },
   {
     title: "OM Shiva Office Proximity",
     category: "Location Hub",
     desc: "Conveniently located at Jalahalli Cross Road, right near the Shiva Temple in Chokkasandra.",
-    aspect: "Peenya, Bangalore"
+    aspect: "Peenya, Bangalore",
+    image: "https://images.unsplash.com/photo-1517400508447-f8dd518b86db?w=800&q=80"
   },
   {
     title: "RTO License Handover",
     category: "Success Stories",
     desc: "Celebrating our students passing their RTO road tests and receiving physical driving cards.",
-    aspect: "94% First-Time Pass"
+    aspect: "94% First-Time Pass",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80"
   },
   {
     title: "Parallel Parking Drill",
     category: "Training Classes",
     desc: "Dedicated segments where instructors train students in tight spatial parking maneuvers.",
-    aspect: "Practical Curriculum"
+    aspect: "Practical Curriculum",
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80"
   },
   {
     title: "Bumper-to-Bumper Traffic Session",
     category: "Training Classes",
     desc: "Real-world exposure lessons helping drivers handle Bengaluru's heavy peak hour roads.",
-    aspect: "Confidence Building"
+    aspect: "Confidence Building",
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80"
   }
 ];
 
@@ -61,16 +68,25 @@ export default function GalleryPage() {
         {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {galleryItems.map((item, i) => (
-            <div key={i} className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full">
+            <div key={i} className="group glass-card rounded-[2rem] overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
               {/* Photo Placeholder */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-slate-50 to-slate-200 p-8 flex flex-col justify-between relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent mix-blend-multiply" />
-                <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-accent w-fit uppercase tracking-wider relative z-10">
-                  {item.category}
-                </div>
-                <div className="flex flex-col items-center justify-center flex-grow py-6 text-slate-300">
-                  {item.category === "Training Fleet" ? <Car className="w-16 h-16" /> : <Award className="w-16 h-16" />}
-                  <span className="text-xs font-semibold text-slate-400 mt-2">{item.aspect}</span>
+              <div className="aspect-[4/3] bg-slate-100 flex flex-col justify-between relative overflow-hidden">
+                <Image 
+                  src={item.image} 
+                  alt={item.title} 
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/40 to-transparent mix-blend-multiply z-10" />
+                
+                <div className="p-8 h-full flex flex-col justify-between relative z-20">
+                  <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 w-fit uppercase tracking-wider border border-slate-200 shadow-sm">
+                    {item.category}
+                  </div>
+                  <div className="flex flex-col items-start justify-end flex-grow pt-6">
+                    <span className="text-xs font-semibold text-white mt-2">{item.aspect}</span>
+                  </div>
                 </div>
               </div>
 

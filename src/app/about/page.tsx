@@ -21,15 +21,15 @@ export default function AboutPage() {
 
         <div className="grid md:grid-cols-2 gap-16 items-center mb-32 max-w-6xl mx-auto">
           <div className="aspect-[4/3] rounded-[2.5rem] bg-slate-100 overflow-hidden relative shadow-2xl">
-             <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-multiply" />
-             <div className="w-full h-full bg-gradient-to-br from-blue-50 to-slate-200 flex flex-col items-center justify-center p-8 border-4 border-white/60">
-                <Car className="w-24 h-24 text-accent/50 mb-4" />
+             <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/10 to-transparent mix-blend-multiply" />
+             <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center p-8 border border-slate-200">
+                <Car className="w-24 h-24 text-slate-300 mb-4" />
                 <span className="text-slate-500 font-bold text-xl font-heading">Modern Training Fleet</span>
              </div>
           </div>
           <div>
-            <div className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-accent font-semibold text-sm mb-6">
-              Our Journey
+            <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 font-semibold text-sm mb-6 border border-slate-200">
+              Our Story
             </div>
             <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">Building Confident Drivers in Bengaluru</h2>
             <p className="text-slate-600 mb-6 leading-relaxed">
@@ -39,12 +39,12 @@ export default function AboutPage() {
               Today, whether you are a college student, a working professional needing flexible hours, a woman looking for a safe learning environment, or a senior citizen fulfilling a lifelong dream, we are here to support you. We teach defensive driving, traffic management, and absolute vehicle control.
             </p>
             <div className="flex gap-4">
-               <div className="text-center bg-slate-50 p-4 rounded-2xl border border-slate-100 flex-1">
-                 <div className="font-heading font-bold text-2xl text-primary">200+</div>
+               <div className="text-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex-1">
+                 <div className="font-heading font-bold text-2xl text-accent">200+</div>
                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">Verified Reviews</div>
                </div>
-               <div className="text-center bg-slate-50 p-4 rounded-2xl border border-slate-100 flex-1">
-                 <div className="font-heading font-bold text-2xl text-primary">100%</div>
+               <div className="text-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex-1">
+                 <div className="font-heading font-bold text-2xl text-accent">100%</div>
                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">Safe Learning</div>
                </div>
             </div>
@@ -61,8 +61,8 @@ export default function AboutPage() {
               { icon: ShieldCheck, title: "Trustworthy & Safe", desc: "Dual controls and expert instructors guarantee a stress-free experience." },
               { icon: Users, title: "Friendly & Patient", desc: "We specialize in teaching nervous beginners and first-time learners." }
             ].map((value, i) => (
-              <div key={i} className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] text-center transition-transform hover:-translate-y-1">
-                <div className="w-16 h-16 mx-auto bg-blue-50 text-accent rounded-full flex items-center justify-center mb-6">
+              <div key={i} className="glass-card rounded-[2rem] p-8 text-center">
+                <div className="w-16 h-16 mx-auto bg-slate-50 border border-slate-100 text-slate-700 rounded-full flex items-center justify-center mb-6 shadow-sm">
                   <value.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-heading font-bold text-primary mb-3">{value.title}</h3>

@@ -1,4 +1,4 @@
-import { Car, Shield, Gauge } from "lucide-react";
+import { Shield, Gauge } from "lucide-react";
 
 export function FleetSection() {
   const cars = [
@@ -8,7 +8,8 @@ export function FleetSection() {
       type: "Manual",
       desc: "The perfect beginner's hatchback. Nimble in traffic with excellent visibility.",
       features: ["Dual Controls", "Power Steering", "Compact Size"],
-      bgColor: "bg-blue-50"
+      bgColor: "bg-blue-50",
+      image: "/swift_action.jpg"
     },
     {
       name: "Maruti Suzuki Brezza",
@@ -16,7 +17,8 @@ export function FleetSection() {
       type: "Manual",
       desc: "Learn to command an SUV. High seating position for supreme confidence.",
       features: ["Dual Controls", "ABS & Airbags", "Modern Dash"],
-      bgColor: "bg-slate-50"
+      bgColor: "bg-slate-50",
+      image: "/brezza_new.png"
     }
   ];
 
@@ -43,9 +45,12 @@ export function FleetSection() {
                 </div>
               </div>
               
-              {/* Placeholder for Car Image - 16:9 aspect ratio */}
               <div className="aspect-video w-full rounded-2xl bg-slate-700/50 mb-8 relative overflow-hidden flex items-center justify-center">
-                 <Car className="w-24 h-24 text-slate-600 opacity-50 group-hover:scale-110 transition-transform duration-700" />
+                 <img 
+                   src={car.image} 
+                   alt={car.name} 
+                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
               </div>
 

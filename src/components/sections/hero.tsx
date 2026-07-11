@@ -24,25 +24,24 @@ export function HeroSection() {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-tight text-primary mb-6 leading-tight">
-            Learn Safe. Drive Smart. <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-accent to-blue-600 bg-clip-text text-transparent">Build Confidence.</span>
+            Master the Roads with <br className="hidden md:block" />
+            <span className="text-gradient">Bengaluru's Highest-Rated</span> Driving School
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Welcome to the most trusted driving school in Peenya and North Bengaluru. Whether you're a first-time learner, working professional, or senior citizen, our patient trainers will guide you every step of the way.
+            Patient instructors, the latest 2025 SUV fleet, and zero RTO headaches. Join 200+ confident, independent drivers who started their journey in Peenya.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="https://wa.me/919535704871?text=Hi%2C%20I%20want%20to%20enquire%20about%20driving%20classes">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto gap-2 text-lg shadow-xl shadow-blue-500/20 rounded-full px-8 py-6 transition-transform hover:scale-105 active:scale-95">
-                Book Your Class Today
+              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto gap-2 text-lg shadow-xl shadow-green-500/20 px-8 py-6">
+                Chat on WhatsApp
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
-            <Link href="tel:+919535704871">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2 text-lg bg-white rounded-full px-8 py-6 hover:bg-slate-50 transition-all">
-                <Phone className="w-5 h-5 text-accent" />
-                Call +91 95357 04871
+            <Link href="/courses">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2 text-lg bg-white px-8 py-6 hover:bg-slate-50 transition-all">
+                Explore Courses
               </Button>
             </Link>
           </div>

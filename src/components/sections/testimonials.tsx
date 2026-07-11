@@ -1,4 +1,5 @@
 import { Star, Quote } from "lucide-react";
+import Image from "next/image";
 
 export function TestimonialsSection() {
   const reviews = [
@@ -6,19 +7,22 @@ export function TestimonialsSection() {
       name: "Priya Sharma",
       role: "Student",
       text: "I was terrified of Bengaluru traffic, but Ram sir's patience is incredible. He taught me to anticipate traffic rather than just react to it. I now drive to my office in Manyata Tech Park every day with zero fear.",
-      rating: 5
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
     },
     {
       name: "Karthik N.",
       role: "IT Professional",
       text: "From LLR to permanent license, the team handled everything flawlessly. The dual-control cars made me feel safe during my initial days. Highly recommend them for anyone in Peenya or Jalahalli.",
-      rating: 5
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80"
     },
     {
       name: "Lakshmi Rao",
       role: "Senior Citizen",
       text: "At 55, I thought it was too late to learn. The instructors here proved me wrong. They were incredibly respectful, patient, and modified their teaching style to suit my pace. A life-changing experience.",
-      rating: 5
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80"
     }
   ];
 
@@ -51,8 +55,14 @@ export function TestimonialsSection() {
               <p className="text-slate-700 leading-relaxed mb-8 relative z-10">"{review.text}"</p>
               
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">
-                  {review.name.charAt(0)}
+                <div className="w-12 h-12 rounded-full relative overflow-hidden bg-slate-200">
+                  <Image 
+                    src={review.image} 
+                    alt={review.name} 
+                    fill 
+                    className="object-cover"
+                    unoptimized
+                  />
                 </div>
                 <div>
                   <h4 className="font-bold text-primary">{review.name}</h4>

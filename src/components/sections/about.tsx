@@ -40,8 +40,13 @@ export function AboutSection() {
           {/* Image/Visual Content */}
           <div className="lg:w-1/2 order-1 lg:order-2 w-full relative">
             <div className="aspect-[4/3] rounded-[2.5rem] bg-slate-200 overflow-hidden relative shadow-2xl group">
-              {/* Fallback pattern if no image */}
-              <div className="absolute inset-0 bg-slate-100 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]" />
+              <Image 
+                src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80" 
+                alt="Driving instructor teaching a student in a modern car" 
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
+              />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 to-transparent mix-blend-multiply z-10" />
               
               <div className="absolute bottom-8 left-8 right-8 z-20">
