@@ -22,7 +22,6 @@ const quickLinks = [
   { label: "About Us",      href: "/about" },
   { label: "Courses",       href: "/courses" },
   { label: "Traffic Signs", href: "/traffic-signs" },
-  { label: "Gallery",       href: "/gallery" },
   { label: "Contact",       href: "/contact" },
 ];
 
@@ -37,11 +36,11 @@ export function Footer() {
           {/* ── Brand ── */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block mb-4" aria-label="OM Shiva Driving School – Home">
-              <div className="font-heading font-extrabold text-[18px] tracking-tight text-white leading-none">
-                OM SHIVA<span className="text-[#2563EB]">.</span>
+              <div className="font-heading font-black text-[22px] tracking-tight text-white leading-none">
+                OM SHIVA<span className="text-[#3B82F6]">.</span>
               </div>
-              <div className="text-[9px] font-medium tracking-[0.18em] uppercase text-white/40 mt-0.5">
-                Motor Driving School
+              <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/50 mt-0.5">
+                MOTOR DRIVING SCHOOL
               </div>
             </Link>
             <p className="text-white/50 text-[13px] leading-relaxed mb-5 max-w-[240px]">

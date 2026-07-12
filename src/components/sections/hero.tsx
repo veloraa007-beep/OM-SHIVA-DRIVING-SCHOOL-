@@ -137,7 +137,7 @@ export function HeroSection() {
           {/* Main Image Frame */}
           <div className="relative rounded-3xl overflow-hidden aspect-[4/3] bg-[#F3F4F6] shadow-2xl shadow-slate-200/60 border border-white ring-1 ring-[#E5E7EB]">
             <Image
-              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=90"
+              src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=90"
               alt="Driving instructor teaching a student in a modern car on the streets of Bangalore"
               fill
               className="object-cover"

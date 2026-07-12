@@ -12,7 +12,6 @@ const navLinks = [
   { label: "About",         href: "/about" },
   { label: "Courses",       href: "/courses" },
   { label: "Traffic Signs", href: "/traffic-signs" },
-  { label: "Gallery",       href: "/gallery" },
   { label: "Contact",       href: "/contact" },
 ];
 
@@ -87,15 +86,14 @@ export function Navbar() {
             <div className="flex flex-col leading-none">
               <span
                 className={cn(
-                  "font-heading font-extrabold text-[17px] tracking-tight transition-colors duration-300",
+                  "font-heading font-black text-[22px] tracking-tight transition-colors duration-300",
                   scrolled ? "text-[#0F172A]" : "text-[#0F172A]"
                 )}
               >
-                OM SHIVA
-                <span className="text-[#2563EB]">.</span>
+                OM SHIVA<span className="text-[#3B82F6]">.</span>
               </span>
-              <span className="text-[9px] font-medium tracking-[0.18em] uppercase text-[#6B7280] mt-0.5">
-                Motor Driving School
+              <span className="text-[10px] font-semibold tracking-[0.2em] text-[#6B7280] mt-0.5">
+                MOTOR DRIVING SCHOOL
               </span>
             </div>
           </Link>

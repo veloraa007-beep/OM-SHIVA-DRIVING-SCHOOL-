@@ -16,8 +16,8 @@ const vehicles = [
     ],
     badge: "Beginner Friendly",
     badgeColor: "bg-green-50 text-green-700 border-green-100",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=85",
-    alt: "Maruti Suzuki Swift training car at OM Shiva Motor Driving School, Peenya Bangalore — dual-control beginner vehicle",
+    image: "/swift_real.jpg",
+    alt: "Real Maruti Suzuki Swift (2013–2015) training car at OM Shiva Motor Driving School, Peenya Bangalore — dual-control beginner vehicle with silver exterior",
   },
   {
     name: "Maruti Suzuki Brezza",
@@ -33,8 +33,8 @@ const vehicles = [
     ],
     badge: "Latest 2025 Model",
     badgeColor: "bg-blue-50 text-blue-700 border-blue-100",
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=85",
-    alt: "2025 Maruti Suzuki Brezza SUV training car at OM Shiva Motor Driving School — modern fleet for advanced driving practice",
+    image: "/brezza_red.jpg",
+    alt: "Actual 2025 Maruti Suzuki Brezza (red) SUV at OM Shiva Motor Driving School — brand new training vehicle for advanced driving practice in Bangalore",
   },
 ];
 
@@ -70,16 +70,15 @@ export function FleetSection() {
               aria-label={name}
             >
               {/* Image */}
-              <div className="relative aspect-[16/9] bg-[#F3F4F6] overflow-hidden">
+              <div className="relative aspect-[16/9] overflow-hidden" style={{background: "linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%)"}}>  
                 <Image
                   src={image}
                   alt={alt}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   unoptimized
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/20 to-transparent" aria-hidden="true" />
                 {/* Badge */}
                 <div className={`absolute top-4 left-4 px-2.5 py-1 rounded-full text-[11px] font-semibold border ${badgeColor}`}>
                   {badge}
