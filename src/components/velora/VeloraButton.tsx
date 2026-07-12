@@ -47,6 +47,8 @@ export interface VeloraButtonProps
     VariantProps<typeof veloraButtonVariants> {
   asChild?: boolean;
   href?: string;
+  target?: string;
+  rel?: string;
   icon?: boolean | React.ReactNode;
   animation?: boolean;
 }

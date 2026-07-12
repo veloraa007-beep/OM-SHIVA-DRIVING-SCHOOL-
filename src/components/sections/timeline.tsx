@@ -49,11 +49,11 @@ const steps = [
 const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
-};
+} as const;
 
 const item = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 280, damping: 26 } },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 280, damping: 26 } },
 };
 
 export function TimelineSection() {
@@ -118,7 +118,7 @@ export function TimelineSection() {
           <motion.ol
             className="space-y-6"
             role="list"
-            variants={container}
+            variants={container as any}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}

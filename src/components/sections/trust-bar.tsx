@@ -35,7 +35,7 @@ export function TrustBar() {
         {/* ── Big Stats Row ── */}
         <motion.div
           className="grid grid-cols-3 divide-x divide-[#F3F4F6] py-10"
-          variants={container}
+          variants={container as any}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
@@ -43,7 +43,7 @@ export function TrustBar() {
           {bigStats.map(({ value, label, sub }) => (
             <motion.div
               key={label}
-              variants={item}
+              variants={item as any}
               className="flex flex-col items-center text-center px-6 first:pl-0 last:pr-0"
             >
               <span
@@ -66,7 +66,7 @@ export function TrustBar() {
         {/* ── Trust Signals Row ── */}
         <motion.div
           className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 py-6"
-          variants={container}
+          variants={container as any}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-40px" }}
@@ -74,7 +74,7 @@ export function TrustBar() {
           {trustSignals.map(({ icon: Icon, text, sub }) => (
             <motion.div
               key={text}
-              variants={item}
+              variants={item as any}
               className="flex items-center gap-3 flex-shrink-0"
             >
               <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
@@ -89,7 +89,7 @@ export function TrustBar() {
 
           {/* Google badge */}
           <motion.a
-            variants={item}
+            variants={item as any}
             href="https://maps.app.goo.gl/XbrbyazA2uuoGAry9"
             target="_blank"
             rel="noopener noreferrer"
