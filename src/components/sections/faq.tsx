@@ -4,74 +4,122 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function FAQSection() {
-  const faqs = [
-    {
-      q: "How many days does the driving course take?",
-      a: "Our standard beginner course spans over 15 to 21 days depending on your learning pace. Each session is 30-45 minutes of practical driving."
-    },
-    {
-      q: "Do you help with getting the Driving License?",
-      a: "Yes! We provide end-to-end assistance. We help you apply for the Learner's License (LLR), prep you for the road test, and assist with the permanent license documentation at the RTO."
-    },
-    {
-      q: "Do you offer weekend or early morning classes?",
-      a: "Absolutely. We understand working professionals have tight schedules. Our classes start as early as 6:00 AM and run till 8:00 PM, including weekend batches."
-    },
-    {
-      q: "Is it safe for women to learn at your school?",
-      a: "Safety and respect are our top priorities. We have highly professional instructors, and upon request, we can arrange specific time slots or female instructors based on availability."
-    },
-    {
-      q: "What cars do you use for training?",
-      a: "We train students on dual-control enabled hatchbacks (Maruti Swift) and compact SUVs (Brezza) to ensure you learn on vehicles relevant to modern city driving."
-    }
-  ];
+const faqs = [
+  {
+    q: "Do I need any prior experience to join?",
+    a: "Not at all. We accept complete beginners. Our instructors start from the very basics — how to sit, adjust mirrors, use the clutch — and work up from there at your own pace.",
+  },
+  {
+    q: "How many classes will I need before I'm test-ready?",
+    a: "Most students are ready for the RTO road test in 15–25 sessions, depending on how quickly they pick up skills. We won't put you forward for the test until you're genuinely confident.",
+  },
+  {
+    q: "Do you help with the LLR (Learner's Licence) test?",
+    a: "Yes. We provide study materials and guide you through the RTO's online LLR test. Once you pass, we schedule your practical driving classes.",
+  },
+  {
+    q: "What are your timing options?",
+    a: "We operate every day from 6:00 AM to 8:00 PM. Slots are typically 1 hour per session. We'll find a time that works around your job, college, or other commitments.",
+  },
+  {
+    q: "What cars will I be trained in?",
+    a: "You'll train in our Maruti Suzuki Swift (2013–2015) for beginner sessions, and can progress to our 2025 Brezza SUV once you're comfortable. All cars have dual-control systems.",
+  },
+  {
+    q: "Where is OM Shiva Motor Driving School located?",
+    a: "We're at Jalahalli Cross Road, Near Shiva Temple, Nethaji Nagar, Chokkasandra, Peenya, Bengaluru – 560057. Easily accessible from Peenya, Jalahalli, Dasarahalli, Nagasandra, and Yeshwanthpur.",
+  },
+];
 
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+export function FAQSection() {
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">Frequently Asked Questions</h2>
-          <p className="text-slate-600 text-lg">Everything you need to know about our driving courses and RTO processes.</p>
-        </div>
+    <section
+      id="faq"
+      className="section-py bg-[#F8FAFC]"
+      aria-labelledby="faq-heading"
+    >
+      <div className="container">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
 
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <div 
-              key={i} 
-              className={cn(
-                "border rounded-2xl overflow-hidden transition-all duration-300",
-                openIndex === i ? "border-accent/30 bg-blue-50/30 shadow-sm" : "border-slate-200 hover:border-accent/30"
-              )}
+          {/* Left — static */}
+          <div>
+            <div className="section-label">
+              <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
+              FAQ
+            </div>
+            <h2 id="faq-heading" className="section-title mb-4">
+              Questions?
+              <br />We've got
+              <br />answers.
+            </h2>
+            <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6">
+              Don't see your question here? Call or WhatsApp us and we'll get
+              back to you right away.
+            </p>
+            <a
+              href="https://wa.me/919902295515?text=Hi%2C%20I%20have%20a%20question%20about%20your%20driving%20school"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-[#E5E7EB] text-[#374151] text-[14px] font-semibold hover:bg-[#F9FAFB] hover:border-[#D1D5DB] transition-all"
             >
-              <button
-                className="w-full flex items-center justify-between p-6 text-left"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-              >
-                <span className="font-heading font-bold text-lg text-primary">{faq.q}</span>
-                <ChevronDown className={cn(
-                  "w-5 h-5 text-accent transition-transform duration-300 shrink-0 ml-4",
-                  openIndex === i ? "rotate-180" : ""
-                )} />
-              </button>
-              
-              <div 
+              Ask on WhatsApp
+            </a>
+          </div>
+
+          {/* Right — accordion */}
+          <div
+            className="space-y-3"
+            role="list"
+            aria-label="Frequently asked questions"
+          >
+            {faqs.map(({ q, a }, i) => (
+              <div
+                key={q}
                 className={cn(
-                  "grid transition-all duration-300 ease-in-out",
-                  openIndex === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  "bg-white rounded-2xl border transition-all duration-200",
+                  open === i
+                    ? "border-[#BFDBFE] shadow-sm shadow-blue-100/50"
+                    : "border-[#E5E7EB] hover:border-[#D1D5DB]"
                 )}
+                role="listitem"
               >
-                <div className="overflow-hidden">
-                  <div className="p-6 pt-0 text-slate-600 leading-relaxed">
-                    {faq.a}
-                  </div>
+                <button
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                  aria-controls={`faq-answer-${i}`}
+                  id={`faq-question-${i}`}
+                >
+                  <span className="font-heading font-semibold text-[#0F172A] text-[15px] leading-snug">
+                    {q}
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "w-5 h-5 text-[#9CA3AF] flex-shrink-0 transition-transform duration-200",
+                      open === i && "rotate-180 text-[#2563EB]"
+                    )}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                <div
+                  id={`faq-answer-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${i}`}
+                  className={cn(
+                    "overflow-hidden transition-all duration-300",
+                    open === i ? "max-h-60" : "max-h-0"
+                  )}
+                >
+                  <p className="px-6 pb-5 text-[#6B7280] text-[14px] leading-relaxed">
+                    {a}
+                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

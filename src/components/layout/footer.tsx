@@ -1,179 +1,160 @@
 import Link from "next/link";
 import { MapPin, Phone, Clock } from "lucide-react";
 
-const targetLocations = [
-  { name: "Peenya Driving School", href: "/location/peenya" },
-  { name: "Jalahalli Driving School", href: "/location/jalahalli" },
-  { name: "Dasarahalli Driving School", href: "/location/dasarahalli" },
-  { name: "Chokkasandra Driving School", href: "/location/chokkasandra" },
-  { name: "Nagasandra Driving School", href: "/location/nagasandra" },
-];
-
 const services = [
-  { name: "Beginner Driving Classes", href: "/courses" },
-  { name: "Refresher Driving Course", href: "/courses" },
-  { name: "Defensive Driving Training", href: "/courses" },
-  { name: "Driving License Assistance", href: "/license-assistance" },
-  { name: "RTO Documentation Support", href: "/license-assistance" },
-  { name: "Road Test Preparation", href: "/license-assistance" },
+  { label: "Beginner Driving Classes",   href: "/courses" },
+  { label: "Refresher Driving Course",   href: "/courses" },
+  { label: "Road Test Preparation",      href: "/courses" },
+  { label: "Driving License Assistance", href: "/courses" },
+  { label: "Traffic Signs Guide",        href: "/traffic-signs" },
 ];
 
-const InstagramIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-  </svg>
-);
+const locations = [
+  { label: "Peenya",       href: "/location/peenya" },
+  { label: "Jalahalli",    href: "/location/jalahalli" },
+  { label: "Dasarahalli",  href: "/location/dasarahalli" },
+  { label: "Chokkasandra", href: "/location/chokkasandra" },
+  { label: "Nagasandra",   href: "/location/nagasandra" },
+];
 
-const FacebookIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-  </svg>
-);
+const quickLinks = [
+  { label: "Home",          href: "/" },
+  { label: "About Us",      href: "/about" },
+  { label: "Courses",       href: "/courses" },
+  { label: "Traffic Signs", href: "/traffic-signs" },
+  { label: "Gallery",       href: "/gallery" },
+  { label: "Contact",       href: "/contact" },
+];
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-primary text-white">
-      {/* Main Footer */}
-      <div className="pt-20 pb-12">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            {/* Brand */}
-            <div>
-              <Link href="/" className="inline-block mb-6">
-                <span className="font-heading font-extrabold text-2xl tracking-tight text-white">
-                  OM SHIVA<span className="text-accent">.</span>
-                </span>
-                <span className="block text-[10px] text-white/50 font-medium tracking-widest uppercase mt-0.5">
-                  Motor Driving School
-                </span>
-              </Link>
-              <p className="text-sm italic text-blue-200 mb-4">
-                &ldquo;Learn Safe. Drive Smart. Build Confidence.&rdquo;
-              </p>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                North Bengaluru&apos;s most trusted premium driving academy.
-                Building confident, safe, and responsible drivers since day one.
-              </p>
-              <div className="flex gap-3">
-                <Link
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
-                  aria-label="Facebook"
-                >
-                  <FacebookIcon className="w-4 h-4" />
-                </Link>
+    <footer className="bg-[#0F172A] text-white" role="contentinfo">
+      <div className="container py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+
+          {/* ── Brand ── */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link href="/" className="inline-block mb-4" aria-label="OM Shiva Driving School – Home">
+              <div className="font-heading font-extrabold text-[18px] tracking-tight text-white leading-none">
+                OM SHIVA<span className="text-[#2563EB]">.</span>
               </div>
-            </div>
+              <div className="text-[9px] font-medium tracking-[0.18em] uppercase text-white/40 mt-0.5">
+                Motor Driving School
+              </div>
+            </Link>
+            <p className="text-white/50 text-[13px] leading-relaxed mb-5 max-w-[240px]">
+              North Bangalore's most trusted driving school. Training safe,
+              confident drivers since 2004.
+            </p>
 
-            {/* Our Services */}
-            <div>
-              <h4 className="font-heading font-semibold text-lg mb-6">
-                Our Services
-              </h4>
-              <ul className="space-y-3">
-                {services.map((service) => (
-                  <li key={service.name}>
-                    <Link
-                      href={service.href}
-                      className="text-gray-400 hover:text-white transition-colors text-sm"
-                    >
-                      {service.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Areas We Serve (Location Pages) */}
-            <div>
-              <h4 className="font-heading font-semibold text-lg mb-6">
-                Target Locations
-              </h4>
-              <ul className="space-y-3">
-                {targetLocations.map((loc) => (
-                  <li key={loc.name}>
-                    <Link
-                      href={loc.href}
-                      className="text-gray-400 hover:text-white transition-colors text-sm"
-                    >
-                      {loc.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-heading font-semibold text-lg mb-6">
-                Contact Us
-              </h4>
-              <ul className="space-y-5">
-                <li className="flex items-start gap-3 text-gray-400 text-sm">
-                  <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span>
-                    Jalahalli Cross Road, Near Shiva Temple, Nethaji Nagar,
-                    Chokkasandra, Peenya, Bengaluru, Karnataka – 560057
-                  </span>
-                </li>
-                <li>
-                  <Link
-                    href="tel:+919535704871"
-                    className="flex items-center gap-3 text-gray-400 text-sm hover:text-white transition-colors"
-                  >
-                    <Phone className="w-5 h-5 text-accent shrink-0" />
-                    <span>+91 95357 04871</span>
-                  </Link>
-                </li>
-                <li className="flex items-center gap-3 text-gray-400 text-sm">
-                  <Clock className="w-5 h-5 text-accent shrink-0" />
-                  <span>Mon – Sun, 6:00 AM – 8:00 PM</span>
-                </li>
-              </ul>
-            </div>
+            {/* Contact items */}
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="tel:+919902295515"
+                  className="flex items-center gap-2.5 text-[13px] text-white/60 hover:text-white transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0" aria-hidden="true" />
+                  +91 99022 95515
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 text-[13px] text-white/60">
+                <MapPin className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Jalahalli Cross, Near Shiva Temple, Peenya, Bengaluru – 560057</span>
+              </li>
+              <li className="flex items-center gap-2.5 text-[13px] text-white/60">
+                <Clock className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0" aria-hidden="true" />
+                Mon – Sun · 6 AM – 8 PM
+              </li>
+            </ul>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 text-sm gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-              <p>
-                © {new Date().getFullYear()} OM Shiva Motor Driving School. All
-                rights reserved.
-              </p>
-              <span className="hidden md:inline text-white/10">|</span>
-              <a 
-                href="https://velora-sandy.vercel.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 hover:text-white transition-colors group"
-              >
-                Built by <span className="text-white font-semibold tracking-wide group-hover:text-accent transition-colors">VELORA</span>
-              </a>
-            </div>
-            
-            <div className="flex gap-6">
-              <Link
-                href="/privacy-policy"
-                className="hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms-of-service"
-                className="hover:text-white transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </div>
+          {/* ── Quick Links ── */}
+          <div>
+            <h3 className="text-[11px] font-semibold text-white/40 uppercase tracking-[0.14em] mb-4">
+              Navigation
+            </h3>
+            <ul className="space-y-2.5">
+              {quickLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-[13px] text-white/60 hover:text-white transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Services ── */}
+          <div>
+            <h3 className="text-[11px] font-semibold text-white/40 uppercase tracking-[0.14em] mb-4">
+              Services
+            </h3>
+            <ul className="space-y-2.5">
+              {services.map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="text-[13px] text-white/60 hover:text-white transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Areas We Serve ── */}
+          <div>
+            <h3 className="text-[11px] font-semibold text-white/40 uppercase tracking-[0.14em] mb-4">
+              Areas Served
+            </h3>
+            <ul className="space-y-2.5">
+              {locations.map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="text-[13px] text-white/60 hover:text-white transition-colors"
+                  >
+                    {label} Driving School
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* ── Bottom Bar ── */}
+        <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] text-white/40">
+            © {year} OM Shiva Motor Driving School. All rights reserved.
+          </p>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/privacy-policy"
+              className="text-[12px] text-white/40 hover:text-white/80 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms-of-service"
+              className="text-[12px] text-white/40 hover:text-white/80 transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <a
+              href="https://velora-sandy.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] text-white/40 hover:text-white/80 transition-colors"
+            >
+              Built by Velora
+            </a>
           </div>
         </div>
       </div>

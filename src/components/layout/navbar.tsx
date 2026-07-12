@@ -1,150 +1,266 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Phone, Menu, X, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const links = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Courses", href: "/courses" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Contact", href: "/contact" },
+const navLinks = [
+  { label: "Home",          href: "/" },
+  { label: "About",         href: "/about" },
+  { label: "Courses",       href: "/courses" },
+  { label: "Traffic Signs", href: "/traffic-signs" },
+  { label: "Gallery",       href: "/gallery" },
+  { label: "Contact",       href: "/contact" },
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled]       = useState(false);
+  const [menuOpen, setMenuOpen]       = useState(false);
+  const pathname                      = usePathname();
+
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 40);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [handleScroll]);
+
+  // Close mobile menu on route change
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   return (
     <>
-      {/* Top bar */}
-      <div className="bg-primary text-white text-xs sm:text-sm py-2 fixed top-0 w-full z-[60]">
-        <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-            <span className="font-semibold">4.9★</span>
-            <span className="text-white/70 hidden sm:inline">· 200+ Verified Google Reviews</span>
+      {/* ── Announcement Bar ── */}
+      <div
+        role="banner"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#0F172A] text-white"
+        style={{ height: "36px" }}
+      >
+        <div className="container h-full flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs text-white/70">
+            <span className="inline-flex items-center gap-1">
+              <span className="text-yellow-400 text-sm">★</span>
+              <span className="font-semibold text-white">4.9</span>
+              <span className="hidden sm:inline">from 200+ Google reviews</span>
+            </span>
+            <span className="hidden md:inline text-white/40">·</span>
+            <span className="hidden md:inline">Mon – Sun &nbsp;6 AM – 8 PM</span>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-white/70 hidden md:inline">Mon–Sun 6:00 AM – 8:00 PM</span>
-            <Link
-              href="tel:+919535704871"
-              className="flex items-center gap-1.5 hover:text-accent transition-colors font-medium"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              +91 95357 04871
-            </Link>
-          </div>
+          <a
+            href="tel:+919902295515"
+            className="flex items-center gap-1.5 text-xs font-semibold text-white hover:text-blue-300 transition-colors"
+            aria-label="Call us at +91 99022 95515"
+          >
+            <Phone className="w-3 h-3" aria-hidden="true" />
+            +91 99022 95515
+          </a>
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* ── Main Navbar ── */}
       <header
         className={cn(
-          "fixed top-[32px] w-full z-50 transition-all duration-500",
-          isScrolled
-            ? "bg-white/90 backdrop-blur-md py-3 shadow-sm border-b border-slate-200/50"
-            : "bg-transparent py-5"
+          "fixed left-0 right-0 z-40 transition-all duration-300 ease-out",
+          scrolled
+            ? "bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] shadow-[0_1px_12px_rgba(0,0,0,0.06)] py-3"
+            : "bg-transparent py-5",
         )}
+        style={{ top: "36px" }}
+        role="navigation"
+        aria-label="Main navigation"
       >
-        <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-          <Link href="/" className="flex flex-col">
-            <span className="font-heading font-extrabold text-xl md:text-2xl text-primary tracking-tight leading-none">
-              OM SHIVA<span className="text-accent">.</span>
-            </span>
-            <span className="text-[10px] text-slate-500 font-medium tracking-widest uppercase">
-              Motor Driving School
-            </span>
+        <div className="container flex items-center justify-between gap-4">
+
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0 group" aria-label="OM Shiva Driving School – Home">
+            <div className="flex flex-col leading-none">
+              <span
+                className={cn(
+                  "font-heading font-extrabold text-[17px] tracking-tight transition-colors duration-300",
+                  scrolled ? "text-[#0F172A]" : "text-[#0F172A]"
+                )}
+              >
+                OM SHIVA
+                <span className="text-[#2563EB]">.</span>
+              </span>
+              <span className="text-[9px] font-medium tracking-[0.18em] uppercase text-[#6B7280] mt-0.5">
+                Motor Driving School
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden xl:flex items-center gap-6">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="relative text-xs font-semibold text-foreground/70 hover:text-primary transition-colors group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent rounded-full transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Desktop navigation">
+            {navLinks.map(({ label, href }) => {
+              const active = pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={cn(
+                    "relative px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200",
+                    active
+                      ? "text-[#2563EB] bg-blue-50"
+                      : "text-[#374151] hover:text-[#0F172A] hover:bg-[#F9FAFB]"
+                  )}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {label}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute bottom-0.5 left-3.5 right-3.5 h-[2px] bg-[#2563EB] rounded-full"
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
-            <Link href="https://wa.me/919535704871?text=Hi%2C%20I%20want%20to%20enquire%20about%20driving%20classes">
-              <Button variant="primary" size="sm">
-                Book Your Class
-              </Button>
-            </Link>
+          {/* CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="tel:+919902295515"
+              className="flex items-center gap-2 text-[13px] font-semibold text-[#374151] hover:text-[#0F172A] transition-colors"
+              aria-label="Call us"
+            >
+              <Phone className="w-4 h-4" aria-hidden="true" />
+              <span className="hidden xl:inline">Call Now</span>
+            </a>
+            <a
+              href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20driving%20classes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#2563EB] text-white text-[13px] font-semibold hover:bg-[#1d4ed8] active:bg-[#1e40af] transition-colors shadow-sm shadow-blue-200"
+            >
+              Book a Class
+              <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </a>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Hamburger */}
           <button
-            className="xl:hidden p-2 text-primary"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation menu"
+            className="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg hover:bg-[#F3F4F6] text-[#374151] transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
+      </header>
 
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
+      {/* ── Mobile Menu ── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden xl:hidden bg-white border-t border-slate-100"
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-30 bg-[#0F172A]/40 backdrop-blur-sm lg:hidden"
+              onClick={() => setMenuOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Drawer */}
+            <motion.div
+              id="mobile-menu"
+              key="drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 bottom-0 z-40 w-[300px] bg-white shadow-2xl flex flex-col lg:hidden"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
             >
-              <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
-                {links.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-medium text-foreground py-2.5 px-4 rounded-xl hover:bg-slate-50 transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-slate-100">
-                  <Link href="tel:+919535704871">
-                    <Button
-                      variant="outline"
-                      className="w-full gap-2 justify-center"
-                    >
-                      <Phone className="w-4 h-4" />
-                      Call +91 95357 04871
-                    </Button>
-                  </Link>
-                  <Link href="https://wa.me/919535704871?text=Hi%2C%20I%20want%20to%20enquire%20about%20driving%20classes">
-                    <Button
-                      variant="primary"
-                      className="w-full justify-center"
-                    >
-                      Book Your Driving Class
-                    </Button>
-                  </Link>
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-5 border-b border-[#F3F4F6]">
+                <div className="flex flex-col leading-none">
+                  <span className="font-heading font-extrabold text-[17px] tracking-tight text-[#0F172A]">
+                    OM SHIVA<span className="text-[#2563EB]">.</span>
+                  </span>
+                  <span className="text-[9px] font-medium tracking-[0.18em] uppercase text-[#9CA3AF] mt-0.5">
+                    Motor Driving School
+                  </span>
                 </div>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[#F3F4F6] text-[#6B7280]"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4.5 h-4.5" />
+                </button>
+              </div>
+
+              {/* Links */}
+              <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+                {navLinks.map(({ label, href }, i) => {
+                  const active = pathname === href;
+                  return (
+                    <motion.div
+                      key={href}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <Link
+                        href={href}
+                        className={cn(
+                          "flex items-center justify-between px-4 py-3 rounded-xl text-[15px] font-medium transition-colors",
+                          active
+                            ? "bg-blue-50 text-[#2563EB] font-semibold"
+                            : "text-[#374151] hover:bg-[#F9FAFB]"
+                        )}
+                        aria-current={active ? "page" : undefined}
+                      >
+                        {label}
+                        <ChevronRight className="w-4 h-4 text-[#9CA3AF]" aria-hidden="true" />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </nav>
+
+              {/* Drawer Footer */}
+              <div className="p-4 border-t border-[#F3F4F6] space-y-3">
+                <a
+                  href="tel:+919902295515"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[#374151] text-[14px] font-semibold hover:bg-[#F9FAFB] transition-colors"
+                >
+                  <Phone className="w-4 h-4" aria-hidden="true" />
+                  +91 99022 95515
+                </a>
+                <a
+                  href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20driving%20classes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#2563EB] text-white text-[14px] font-semibold hover:bg-[#1d4ed8] transition-colors"
+                >
+                  Book a Driving Class
+                </a>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

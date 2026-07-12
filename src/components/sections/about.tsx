@@ -1,63 +1,98 @@
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { CheckCircle2, ArrowRight } from "lucide-react";
+
+const highlights = [
+  "Patient, certified instructors who adapt to your learning pace",
+  "Dual-control cars — instructor has full control in emergencies",
+  "Complete RTO documentation, LLR test prep & license assistance",
+  "Real Bangalore road conditions — peak traffic, highways, and parking",
+];
 
 export function AboutSection() {
   return (
-    <section className="py-24 bg-slate-50 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          
-          {/* Text Content */}
-          <div className="lg:w-1/2 order-2 lg:order-1">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-blue-100/50 text-accent font-semibold text-sm mb-6 tracking-wide uppercase">
-              About OM Shiva
+    <section
+      id="about"
+      className="section-py bg-white"
+      aria-labelledby="about-heading"
+    >
+      <div className="container">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* ── Image Side ── */}
+          <div className="relative order-2 lg:order-1">
+            {/* Main image */}
+            <div className="relative rounded-3xl overflow-hidden aspect-[5/4] bg-[#F3F4F6] shadow-xl shadow-slate-200/50">
+              <Image
+                src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=900&q=85"
+                alt="Driving instructor Prakash demonstrating car controls to a student at OM Shiva Motor Driving School"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                unoptimized
+              />
             </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-              More than a driving school. <br className="hidden md:block" />
-              <span className="text-slate-400">We build confident drivers.</span>
+
+            {/* Floating card — experience */}
+            <div className="absolute -bottom-5 -right-3 lg:-right-8 bg-white rounded-2xl p-5 shadow-xl border border-[#F3F4F6] max-w-[200px]">
+              <div className="font-numbers font-bold text-[2.5rem] text-[#2563EB] leading-none">25+</div>
+              <div className="text-[13px] font-semibold text-[#0F172A] mt-1">Years of Experience</div>
+              <div className="text-[11px] text-[#9CA3AF] mt-0.5">Prakash, Head Instructor</div>
+            </div>
+
+            {/* Decorative accent */}
+            <div
+              className="absolute -top-4 -left-4 w-24 h-24 rounded-2xl bg-blue-50 -z-10"
+              aria-hidden="true"
+            />
+          </div>
+
+          {/* ── Text Side ── */}
+          <div className="order-1 lg:order-2">
+            <div className="section-label">
+              <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
+              About Us
+            </div>
+            <h2
+              id="about-heading"
+              className="section-title mb-4"
+            >
+              North Bangalore's Most
+              <br />Trusted Driving School
             </h2>
-            <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-              Established with a mission to make Bengaluru's roads safer, OM Shiva Motor Driving School brings decades of experience to your steering wheel. We understand that learning to drive can be intimidating, which is why our approach is rooted in patience, safety, and encouragement.
+            <p className="section-body mb-6">
+              OM Shiva Motor Driving School has been training safe, confident
+              drivers in Peenya and Jalahalli for over two decades. Founded by
+              <strong className="text-[#0F172A] font-semibold"> Prakash</strong>, our head
+              instructor with 25+ years of experience, we've helped hundreds of
+              students earn their licenses and drive independently.
             </p>
-            
-            <ul className="space-y-4 mb-10">
-              {[
-                "Government Certified Instructors",
-                "Patient, stress-free teaching methods",
-                "Dual-control vehicles for maximum safety",
-                "Specialized modules for Bengaluru traffic"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <div className="bg-green-100 p-1 rounded-full">
-                    <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  </div>
-                  <span className="font-medium text-slate-700">{item}</span>
+            <p className="text-[#6B7280] text-[1rem] leading-relaxed mb-8">
+              We don't rush you. We don't cut corners. We teach you the way
+              driving should be taught — safely, systematically, and with patience.
+            </p>
+
+            <ul className="space-y-3 mb-8" role="list">
+              {highlights.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2
+                    className="w-5 h-5 text-[#22C55E] flex-shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
+                  <span className="text-[#374151] text-[15px]">{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
-          
-          {/* Image/Visual Content */}
-          <div className="lg:w-1/2 order-1 lg:order-2 w-full relative">
-            <div className="aspect-[4/3] rounded-[2.5rem] bg-slate-200 overflow-hidden relative shadow-2xl group">
-              <Image 
-                src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80" 
-                alt="Driving instructor teaching a student in a modern car" 
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 to-transparent mix-blend-multiply z-10" />
-              
-              <div className="absolute bottom-8 left-8 right-8 z-20">
-                <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/20">
-                  <p className="font-heading font-bold text-xl text-primary mb-1">20+ Years Legacy</p>
-                  <p className="text-slate-600 text-sm">Thousands of safe drivers trained in Peenya and beyond.</p>
-                </div>
-              </div>
-            </div>
-          </div>
 
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-[#2563EB] font-semibold text-[15px] hover:gap-3 transition-all"
+              aria-label="Learn more about OM Shiva Motor Driving School"
+            >
+              More about us
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -1,62 +1,83 @@
-import { Car, CheckSquare, FileText, Award } from "lucide-react";
+const steps = [
+  {
+    num: "01",
+    title: "Enquire & Enroll",
+    desc: "Call or WhatsApp us. We'll explain the courses, answer your questions, and register you — usually within the same day.",
+  },
+  {
+    num: "02",
+    title: "Learner's Licence (LLR)",
+    desc: "We help you prepare for and schedule your RTO Learner's Licence test with study materials and guided practice questions.",
+  },
+  {
+    num: "03",
+    title: "Hands-On Training",
+    desc: "Learn vehicle basics, controls, traffic rules, parking, highway driving and real Bangalore road conditions in our dual-control cars.",
+  },
+  {
+    num: "04",
+    title: "RTO Road Test",
+    desc: "We prepare you thoroughly for the RTO practical test and accompany you to the test ground for your final exam.",
+  },
+  {
+    num: "05",
+    title: "Get Your License",
+    desc: "Congratulations! You receive your permanent driving license and join hundreds of confident drivers we've trained over the years.",
+  },
+];
 
 export function TimelineSection() {
-  const steps = [
-    {
-      title: "Enroll & Get LLR",
-      desc: "We handle your Learner's License registration completely online.",
-      icon: FileText,
-      color: "bg-blue-50 text-blue-600 border-blue-200"
-    },
-    {
-      title: "Practical Training",
-      desc: "Learn driving on dual-control cars with our expert trainers.",
-      icon: Car,
-      color: "bg-purple-50 text-purple-600 border-purple-200"
-    },
-    {
-      title: "Theory & Safety",
-      desc: "Understand road signs, traffic rules, and defensive driving.",
-      icon: CheckSquare,
-      color: "bg-amber-50 text-amber-600 border-amber-200"
-    },
-    {
-      title: "Driving Test & License",
-      desc: "We prep you for the RTO test and assist until you get your card.",
-      icon: Award,
-      color: "bg-green-50 text-green-600 border-green-200"
-    }
-  ];
-
   return (
-    <section className="py-24 bg-white relative">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">Your Journey to the Driver's Seat</h2>
-          <p className="text-slate-600 text-lg">A simple, transparent, and guided process from day one to your permanent license.</p>
+    <section
+      id="journey"
+      className="section-py bg-[#F8FAFC]"
+      aria-labelledby="journey-heading"
+    >
+      <div className="container">
+        <div className="max-w-2xl mx-auto text-center mb-14">
+          <div className="section-label justify-center">
+            <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
+            Your Journey
+            <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
+          </div>
+          <h2 id="journey-heading" className="section-title">
+            From Zero to License —
+            <br />Here's How It Works
+          </h2>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          {/* Connector Line */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0" />
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative z-10">
-            {steps.map((step, i) => (
-              <div key={i} className="flex flex-col items-center text-center relative group">
-                <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 border-2 ${step.color} shadow-sm bg-white transition-transform duration-300 group-hover:-translate-y-2`}>
-                  <step.icon className="w-8 h-8" />
-                </div>
-                
-                {/* Step Number Badge */}
-                <div className="absolute top-16 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg border-2 border-white">
-                  {i + 1}
+        {/* Timeline */}
+        <div className="relative max-w-3xl mx-auto">
+          {/* Vertical Line */}
+          <div
+            className="absolute left-[22px] top-0 bottom-0 w-px bg-[#E5E7EB] hidden sm:block"
+            aria-hidden="true"
+          />
+
+          <ol className="space-y-8" role="list">
+            {steps.map(({ num, title, desc }, i) => (
+              <li key={num} className="relative sm:pl-16">
+                {/* Number circle */}
+                <div
+                  className="hidden sm:flex absolute left-0 top-0 w-11 h-11 rounded-full bg-white border-2 border-[#2563EB] items-center justify-center font-numbers font-bold text-[#2563EB] text-[13px] shadow-sm z-10"
+                  aria-hidden="true"
+                >
+                  {num}
                 </div>
 
-                <h3 className="text-xl font-heading font-bold text-slate-800 mb-3">{step.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed px-4">{step.desc}</p>
-              </div>
+                {/* Card */}
+                <div className="card card-shadow p-6 group hover:border-[#2563EB]/30 transition-all">
+                  <div className="sm:hidden text-[11px] font-numbers font-bold text-[#2563EB] mb-2 tracking-wider">
+                    STEP {num}
+                  </div>
+                  <h3 className="font-heading font-bold text-[#0F172A] text-[17px] mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-[#6B7280] text-[14px] leading-relaxed">{desc}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>

@@ -1,75 +1,108 @@
-import { Star, Quote } from "lucide-react";
-import Image from "next/image";
+import { Star, ExternalLink } from "lucide-react";
+
+const reviews = [
+  {
+    name: "Faheem Bagalkot",
+    initial: "F",
+    rating: 5,
+    date: "Recent",
+    text: "Thanks to OM Shiva Driving School, I got my driving license and learned driving with confidence. The instructor was very supportive and taught me all the important driving skills patiently. The entire process was smooth and hassle-free. Highly recommended!",
+  },
+  {
+    name: "Ranjitha G",
+    initial: "R",
+    rating: 5,
+    date: "Recent",
+    text: "I had a very good experience learning driving at this school. The instructor was calm, supportive, and explained traffic rules clearly. They helped me practice in different road conditions, which improved my confidence. I highly recommend this driving school.",
+  },
+  {
+    name: "Hemu Nekar",
+    initial: "H",
+    rating: 5,
+    date: "Recent",
+    text: "Good experience, safe driving, well learned plus friendly trainer. Very good place and Prakash sir is a very well-trained instructor with a well-maintained brand new car. I would suggest OM Shiva Driving School as the best option for all new people.",
+  },
+];
+
+function StarRating({ count }: { count: number }) {
+  return (
+    <div className="flex items-center gap-0.5" role="img" aria-label={`${count} out of 5 stars`}>
+      {[...Array(count)].map((_, i) => (
+        <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" aria-hidden="true" />
+      ))}
+    </div>
+  );
+}
 
 export function TestimonialsSection() {
-  const reviews = [
-    {
-      name: "Priya Sharma",
-      role: "Student",
-      text: "I was terrified of Bengaluru traffic, but Ram sir's patience is incredible. He taught me to anticipate traffic rather than just react to it. I now drive to my office in Manyata Tech Park every day with zero fear.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
-    },
-    {
-      name: "Karthik N.",
-      role: "IT Professional",
-      text: "From LLR to permanent license, the team handled everything flawlessly. The dual-control cars made me feel safe during my initial days. Highly recommend them for anyone in Peenya or Jalahalli.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80"
-    },
-    {
-      name: "Lakshmi Rao",
-      role: "Senior Citizen",
-      text: "At 55, I thought it was too late to learn. The instructors here proved me wrong. They were incredibly respectful, patient, and modified their teaching style to suit my pace. A life-changing experience.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80"
-    }
-  ];
-
   return (
-    <section className="py-24 bg-slate-50 border-y border-slate-100">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 mb-4">
-             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+    <section
+      id="reviews"
+      className="section-py bg-white"
+      aria-labelledby="reviews-heading"
+    >
+      <div className="container">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+          <div>
+            <div className="section-label">
+              <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
+              Google Reviews
+            </div>
+            <h2 id="reviews-heading" className="section-title">
+              Real Stories.
+              <br />Real Confidence.
+            </h2>
           </div>
-          <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">Real Stories. Real Confidence.</h2>
-          <p className="text-slate-600 text-lg">Don't just take our word for it. Read what our 200+ successful students have to say about their journey with us.</p>
+          <a
+            href="https://maps.app.goo.gl/XbrbyazA2uuoGAry9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#2563EB] hover:text-[#1d4ed8] transition-colors flex-shrink-0"
+            aria-label="Read all Google reviews (opens in new tab)"
+          >
+            See all 200+ reviews
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+          </a>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {reviews.map((review, i) => (
-            <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative group hover:shadow-xl hover:border-accent/20 transition-all duration-300">
-              <Quote className="absolute top-6 right-6 w-10 h-10 text-slate-100 group-hover:text-blue-50 transition-colors" />
-              
-              <div className="flex gap-1 mb-6 text-yellow-400">
-                {[...Array(review.rating)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              
-              <p className="text-slate-700 leading-relaxed mb-8 relative z-10">"{review.text}"</p>
-              
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full relative overflow-hidden bg-slate-200">
-                  <Image 
-                    src={review.image} 
-                    alt={review.name} 
-                    fill 
-                    className="object-cover"
-                    unoptimized
-                  />
+        {/* Google badge row */}
+        <div className="flex items-center gap-3 mb-8 p-4 bg-[#F8FAFC] rounded-2xl border border-[#F3F4F6] w-fit">
+          <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm border border-[#E5E7EB]">
+            <span className="text-[15px] font-bold" aria-hidden="true">G</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <span className="font-numbers font-bold text-[#0F172A] text-[18px]">4.9</span>
+              <StarRating count={5} />
+            </div>
+            <div className="text-[11px] text-[#9CA3AF]">200+ Google Reviews</div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {reviews.map(({ name, initial, rating, text, date }) => (
+            <blockquote
+              key={name}
+              className="card card-shadow p-6 flex flex-col"
+              aria-label={`Review by ${name}`}
+            >
+              <StarRating count={rating} />
+              <p className="text-[#374151] text-[14px] leading-relaxed mt-4 mb-5 flex-1">
+                "{text}"
+              </p>
+              <footer className="flex items-center gap-3 border-t border-[#F3F4F6] pt-4">
+                <div
+                  className="w-9 h-9 rounded-full bg-[#EFF6FF] flex items-center justify-center font-heading font-bold text-[#2563EB] text-[14px] flex-shrink-0"
+                  aria-hidden="true"
+                >
+                  {initial}
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary">{review.name}</h4>
-                  <p className="text-sm text-slate-500">{review.role}</p>
+                  <div className="font-semibold text-[#0F172A] text-[13px]">{name}</div>
+                  <div className="text-[11px] text-[#9CA3AF]">{date} · Google Review</div>
                 </div>
-              </div>
-            </div>
+              </footer>
+            </blockquote>
           ))}
         </div>
       </div>
