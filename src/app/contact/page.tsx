@@ -1,128 +1,243 @@
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Clock, MessageCircle, ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Contact OM Shiva Motor Driving School | Peenya, Jalahalli",
-  description: "Book your driving class today at OM Shiva Motor Driving School. Located in Jalahalli Cross, Peenya. Open Mon-Sun, 6 AM to 8 PM.",
+  title: "Contact Us | OM Shiva Motor Driving School, Peenya Bangalore",
+  description:
+    "Book a driving class or ask about our courses. Visit us at Jalahalli Cross, Peenya, Bangalore. Call +91 99022 95515 or WhatsApp anytime.",
+  alternates: { canonical: "https://omshivadrivingschool.in/contact" },
 };
+
+const contactItems = [
+  {
+    icon: Phone,
+    label: "Phone / WhatsApp",
+    content: "+91 99022 95515",
+    href: "tel:+919902295515",
+  },
+  {
+    icon: MapPin,
+    label: "Address",
+    content: "Jalahalli Cross Road, Near Shiva Temple, Nethaji Nagar, Chokkasandra, Peenya, Bengaluru – 560057",
+    href: "https://maps.app.goo.gl/XbrbyazA2uuoGAry9",
+  },
+  {
+    icon: Clock,
+    label: "Business Hours",
+    content: "Monday – Sunday · 6:00 AM – 8:00 PM",
+    href: null,
+  },
+];
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-32">
-      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        <div className="max-w-3xl mx-auto text-center mb-20 animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">Let's Get You on the Road</h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            Ready to build your confidence behind the wheel? Reach out to us today to book your trial class or ask about our RTO assistance services.
+    <>
+      {/* ── Header ── */}
+      <section className="pt-[120px] pb-16 bg-white border-b border-[#F3F4F6]">
+        <div className="container max-w-3xl">
+          <div className="section-label">
+            <span className="w-5 h-px bg-[#2563EB]" />
+            Contact Us
+          </div>
+          <h1
+            className="font-heading font-extrabold text-[#0F172A] tracking-tight mb-5"
+            style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}
+          >
+            Let's Get You
+            <br />Behind the Wheel
+          </h1>
+          <p className="text-[#6B7280] text-[1.05rem] leading-relaxed max-w-lg">
+            Questions about courses? Ready to book? Just want to talk to someone?
+            We respond quickly — call, WhatsApp, or drop by.
           </p>
         </div>
+      </section>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Details */}
-          <div>
-            <div className="glass-card rounded-[2rem] p-8 mb-8">
-              <h3 className="text-2xl font-heading font-bold text-primary mb-8">Contact Details</h3>
-              
-              <div className="space-y-8">
-                <div className="flex gap-5">
-                  <div className="w-14 h-14 bg-slate-50 border border-slate-100 text-slate-700 rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-bold text-primary mb-1 text-lg">Phone / WhatsApp</h4>
-                    <p className="text-slate-600 font-medium text-lg">+91 95357 04871</p>
-                  </div>
-                </div>
+      {/* ── Main Content ── */}
+      <section className="section-py bg-[#F8FAFC]">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-                <div className="flex gap-5">
-                  <div className="w-14 h-14 bg-slate-50 border border-slate-100 text-slate-700 rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-bold text-primary mb-1 text-lg">Location</h4>
-                    <p className="text-slate-600 leading-relaxed">
-                      Jalahalli Cross Road,<br />
-                      Near Shiva Temple, Nethaji Nagar,<br />
-                      Chokkasandra, Peenya,<br />
-                      Bengaluru, Karnataka – 560057
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="w-14 h-14 bg-slate-50 border border-slate-100 text-slate-700 rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
-                    <Clock className="w-6 h-6" />
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-bold text-primary mb-1 text-lg">Business Hours</h4>
-                    <p className="text-slate-600 leading-relaxed">
-                      Monday – Sunday<br />
-                      6:00 AM – 8:00 PM
-                    </p>
-                  </div>
-                </div>
+            {/* ── Left: Contact Info + Map ── */}
+            <div className="space-y-6">
+              {/* Contact details */}
+              <div className="card card-shadow p-7">
+                <h2 className="font-heading font-bold text-[#0F172A] text-[18px] mb-6">
+                  Get in Touch
+                </h2>
+                <ul className="space-y-6">
+                  {contactItems.map(({ icon: Icon, label, content, href }) => (
+                    <li key={label} className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-4.5 h-4.5 text-[#2563EB]" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <div className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-wider mb-0.5">
+                          {label}
+                        </div>
+                        {href ? (
+                          <a
+                            href={href}
+                            target={href.startsWith("http") ? "_blank" : undefined}
+                            rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="text-[#0F172A] text-[15px] font-medium hover:text-[#2563EB] transition-colors"
+                          >
+                            {content}
+                          </a>
+                        ) : (
+                          <p className="text-[#0F172A] text-[15px] font-medium">{content}</p>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
+
+              {/* Quick action buttons */}
+              <div className="grid grid-cols-2 gap-3">
+                <a
+                  href="tel:+919902295515"
+                  className="flex items-center justify-center gap-2 p-4 rounded-2xl bg-white border border-[#E5E7EB] text-[#374151] font-semibold text-[14px] hover:border-[#D1D5DB] hover:bg-[#F9FAFB] transition-all card-shadow"
+                >
+                  <Phone className="w-4 h-4 text-[#2563EB]" aria-hidden="true" />
+                  Call Now
+                </a>
+                <a
+                  href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20driving%20classes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 p-4 rounded-2xl bg-[#25D366] text-white font-semibold text-[14px] hover:bg-[#22c55e] transition-colors shadow-sm"
+                >
+                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                  WhatsApp
+                </a>
+              </div>
+
+              {/* Google Map */}
+              <div className="rounded-2xl overflow-hidden border border-[#E5E7EB] shadow-sm h-[260px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.119098758836!2d77.5190!3d13.0394117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d4c10d0adcf%3A0x2efdb5e6a37d2c95!2sOM%20SHIVA%20MOTOR%20DRIVING%20SCHOOL!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="OM Shiva Motor Driving School location on Google Maps"
+                />
+              </div>
+
+              <a
+                href="https://maps.app.goo.gl/XbrbyazA2uuoGAry9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#2563EB] hover:text-[#1d4ed8] transition-colors"
+              >
+                Open in Google Maps
+                <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
             </div>
 
-            {/* Google Map Embed */}
-            <div className="bg-slate-50 rounded-[2rem] p-4 border border-slate-100 overflow-hidden h-64 shadow-sm">
-               <iframe 
-                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.119098758836!2d77.5190!3d13.0450!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d0000000001%3A0x0!2sJalahalli+Cross!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                 width="100%" 
-                 height="100%" 
-                 style={{ border: 0, borderRadius: "1.5rem" }} 
-                 allowFullScreen={false} 
-                 loading="lazy" 
-                 referrerPolicy="no-referrer-when-downgrade"
-               />
-            </div>
-          </div>
+            {/* ── Right: Enquiry Form ── */}
+            <div className="card card-shadow p-7 lg:p-8">
+              <div className="section-label mb-4">
+                <span className="w-5 h-px bg-[#2563EB]" />
+                Send an Enquiry
+              </div>
+              <h2 className="font-heading font-bold text-[#0F172A] text-[22px] mb-2">
+                Book Your First Class
+              </h2>
+              <p className="text-[#6B7280] text-[14px] mb-7 leading-relaxed">
+                Fill in your details and we'll call you back to confirm your slot — usually within a few hours.
+              </p>
 
-          {/* Contact Form Box */}
-          <div className="glass-card rounded-[2rem] p-8 h-fit">
-             <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 font-semibold text-sm mb-6">
-               Send a Message
-             </div>
-             <h3 className="text-3xl font-heading font-extrabold text-primary mb-4">Book Your Driving Class</h3>
-             <p className="text-slate-600 mb-8 leading-relaxed">
-               Fill out the form below or message us on WhatsApp for an immediate response.
-             </p>
-             
-             <form className="flex flex-col gap-5 mb-8" action="#">
+              <form
+                className="space-y-5"
+                action={`https://wa.me/919902295515`}
+                aria-label="Driving class enquiry form"
+              >
+                {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
-                  <input type="text" id="name" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-accent bg-white/50" placeholder="John Doe" />
+                  <label htmlFor="contact-name" className="block text-[13px] font-semibold text-[#374151] mb-1.5">
+                    Full Name <span className="text-[#EF4444]" aria-label="required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    required
+                    autoComplete="name"
+                    placeholder="Ranjitha G"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[#0F172A] text-[14px] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all bg-white"
+                  />
                 </div>
+
+                {/* Phone */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
-                  <input type="tel" id="phone" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-accent bg-white/50" placeholder="+91 XXXXX XXXXX" />
+                  <label htmlFor="contact-phone" className="block text-[13px] font-semibold text-[#374151] mb-1.5">
+                    Phone / WhatsApp <span className="text-[#EF4444]" aria-label="required">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    name="phone"
+                    required
+                    autoComplete="tel"
+                    placeholder="+91 98765 43210"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[#0F172A] text-[14px] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all bg-white"
+                  />
                 </div>
+
+                {/* Interested In */}
                 <div>
-                  <label htmlFor="course" className="block text-sm font-semibold text-slate-700 mb-2">Interested In</label>
-                  <select id="course" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-accent bg-white/50">
-                    <option>Hatchback Basics</option>
-                    <option>SUV Masterclass</option>
-                    <option>DL Assistance</option>
-                    <option>Other Enquiry</option>
+                  <label htmlFor="contact-course" className="block text-[13px] font-semibold text-[#374151] mb-1.5">
+                    Interested In
+                  </label>
+                  <select
+                    id="contact-course"
+                    name="course"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[#374151] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all bg-white appearance-none"
+                  >
+                    <option value="hatchback">Hatchback Basics (Swift)</option>
+                    <option value="suv">SUV Training (Brezza 2025)</option>
+                    <option value="license">Driving License Assistance</option>
+                    <option value="refresher">Refresher Course</option>
+                    <option value="other">General Enquiry</option>
                   </select>
                 </div>
-                <Button variant="primary" className="w-full h-14 mt-2 text-lg">
-                  Submit Enquiry
-                </Button>
-             </form>
-             
-             <div className="flex flex-col gap-4 pt-6 border-t border-slate-200/60">
-                <p className="text-center text-sm font-semibold text-slate-500 mb-2">Prefer instant chat?</p>
-                <a href="https://wa.me/919535704871?text=Hi%2C%20I%20want%20to%20enquire%20about%20driving%20classes" target="_blank" rel="noopener noreferrer">
-                  <Button variant="whatsapp" className="w-full h-12 text-base shadow-md gap-2">
-                    <MessageCircle className="w-5 h-5" />
-                    Chat on WhatsApp
-                  </Button>
+
+                {/* Message */}
+                <div>
+                  <label htmlFor="contact-message" className="block text-[13px] font-semibold text-[#374151] mb-1.5">
+                    Anything else?
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={3}
+                    placeholder="Preferred timing, location, questions..."
+                    className="w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[#0F172A] text-[14px] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all bg-white resize-none"
+                  />
+                </div>
+
+                {/* Submit */}
+                <a
+                  href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20driving%20class%20at%20OM%20Shiva%20Driving%20School"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#2563EB] text-white text-[15px] font-semibold hover:bg-[#1d4ed8] transition-colors shadow-sm"
+                >
+                  Send via WhatsApp
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </a>
-             </div>
+
+                <p className="text-center text-[12px] text-[#9CA3AF]">
+                  We typically respond within 1–2 hours during business hours.
+                </p>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

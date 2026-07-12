@@ -1,132 +1,141 @@
-import Link from "next/link";
 import Image from "next/image";
-import { Image as ImageIcon, Car, MapPin, Award, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Training Fleet & Office Gallery | OM Shiva Motor Driving School",
-  description: "See our modern, dual-control training vehicles, our office near Jalahalli Cross, and happy students who passed their RTO driving tests.",
+  title: "Gallery | OM Shiva Motor Driving School, Peenya Bangalore",
+  description:
+    "See our training vehicles, school premises, and student driving sessions at OM Shiva Motor Driving School in Peenya, Bangalore.",
+  alternates: { canonical: "https://omshivadrivingschool.in/gallery" },
 };
 
 const galleryItems = [
   {
-    title: "Maruti Suzuki Swift",
-    category: "Training Fleet",
-    desc: "Equipped with professional dual-control brake & clutch systems for absolute beginner safety.",
-    aspect: "Manual Petrol Hatchback",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80"
+    src: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=85",
+    alt: "Student learning to drive on Bangalore roads with driving instructor from OM Shiva Motor Driving School",
+    caption: "Real Road Training",
+    span: "col-span-2 row-span-2",
   },
   {
-    title: "Maruti Suzuki Brezza (2025)",
-    category: "Training Fleet",
-    desc: "Learn to drive a modern SUV. Features high visibility, parking sensors, and easy controls.",
-    aspect: "New SUV Model",
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"
+    src: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&q=85",
+    alt: "Maruti Suzuki Swift training vehicle at OM Shiva Motor Driving School — dual-control car for beginner drivers",
+    caption: "Maruti Swift Fleet",
+    span: "",
   },
   {
-    title: "OM Shiva Office Proximity",
-    category: "Location Hub",
-    desc: "Conveniently located at Jalahalli Cross Road, right near the Shiva Temple in Chokkasandra.",
-    aspect: "Peenya, Bangalore",
-    image: "https://images.unsplash.com/photo-1517400508447-f8dd518b86db?w=800&q=80"
+    src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&q=85",
+    alt: "2025 Maruti Suzuki Brezza SUV used for advanced driving training at OM Shiva Motor Driving School",
+    caption: "2025 Brezza SUV",
+    span: "",
   },
   {
-    title: "RTO License Handover",
-    category: "Success Stories",
-    desc: "Celebrating our students passing their RTO road tests and receiving physical driving cards.",
-    aspect: "94% First-Time Pass",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80"
+    src: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=700&q=85",
+    alt: "Driving instructor Prakash explaining car controls to a student inside the training vehicle",
+    caption: "Inside the Lesson",
+    span: "",
   },
   {
-    title: "Parallel Parking Drill",
-    category: "Training Classes",
-    desc: "Dedicated segments where instructors train students in tight spatial parking maneuvers.",
-    aspect: "Practical Curriculum",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80"
+    src: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=700&q=85",
+    alt: "Student practicing parking maneuver under instructor supervision during driving training session in Peenya",
+    caption: "Parking Practice",
+    span: "",
   },
   {
-    title: "Bumper-to-Bumper Traffic Session",
-    category: "Training Classes",
-    desc: "Real-world exposure lessons helping drivers handle Bengaluru's heavy peak hour roads.",
-    aspect: "Confidence Building",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80"
-  }
+    src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=85",
+    alt: "Students receiving driving license after completing training at OM Shiva Motor Driving School Bangalore",
+    caption: "License Success",
+    span: "",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=700&q=85",
+    alt: "Morning driving practice session on Jalahalli Cross road with driving instructor from OM Shiva Motor Driving School",
+    caption: "Morning Sessions",
+    span: "",
+  },
 ];
 
 export default function GalleryPage() {
   return (
-    <div className="pt-32 pb-32 bg-slate-50/50">
-      <div className="container mx-auto px-4 md:px-8 max-w-5xl">
-        <div className="text-center mb-20 animate-fade-in-up">
-          <ImageIcon className="w-16 h-16 text-accent mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">Fleet & Training Gallery</h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Real photos demonstrating our training vehicles, local training routes, and happy student licensing moments in North Bangalore.
+    <>
+      {/* ── Header ── */}
+      <section className="pt-[120px] pb-16 bg-white border-b border-[#F3F4F6]">
+        <div className="container max-w-3xl">
+          <div className="section-label">
+            <span className="w-5 h-px bg-[#2563EB]" />
+            Gallery
+          </div>
+          <h1
+            className="font-heading font-extrabold text-[#0F172A] tracking-tight mb-5"
+            style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)" }}
+          >
+            Life at
+            <br />OM Shiva Driving School
+          </h1>
+          <p className="text-[#6B7280] text-[1.05rem] leading-relaxed max-w-lg">
+            From our first lesson to their driving license — a look at what happens
+            inside our school every single day.
+          </p>
+          <p className="text-[12px] text-[#9CA3AF] mt-4 italic">
+            Note: Images below are representative placeholders. Real school photos will replace these shortly.
           </p>
         </div>
+      </section>
 
-        {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {galleryItems.map((item, i) => (
-            <div key={i} className="group glass-card rounded-[2rem] overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
-              {/* Photo Placeholder */}
-              <div className="aspect-[4/3] bg-slate-100 flex flex-col justify-between relative overflow-hidden">
-                <Image 
-                  src={item.image} 
-                  alt={item.title} 
+      {/* ── Gallery Grid ── */}
+      <section className="section-py bg-[#F8FAFC]">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[220px]">
+            {galleryItems.map(({ src, alt, caption, span }, i) => (
+              <figure
+                key={i}
+                className={`relative rounded-2xl overflow-hidden group bg-[#F3F4F6] border border-[#E5E7EB] ${span}`}
+              >
+                <Image
+                  src={src}
+                  alt={alt}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                   unoptimized
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/40 to-transparent mix-blend-multiply z-10" />
-                
-                <div className="p-8 h-full flex flex-col justify-between relative z-20">
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 w-fit uppercase tracking-wider border border-slate-200 shadow-sm">
-                    {item.category}
-                  </div>
-                  <div className="flex flex-col items-start justify-end flex-grow pt-6">
-                    <span className="text-xs font-semibold text-white mt-2">{item.aspect}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Text Info */}
-              <div className="p-8 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-heading font-bold text-primary mb-3 group-hover:text-accent transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-4">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA section */}
-        <div className="bg-primary text-white p-12 rounded-[2.5rem] text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/30 to-transparent" />
-          <h2 className="text-3xl font-heading font-bold mb-4 relative z-10">Want to see our vehicles in person?</h2>
-          <p className="text-blue-100 max-w-xl mx-auto mb-8 relative z-10">
-            Visit our physical office near the Shiva Temple at Jalahalli Cross, or schedule a free class demo request today.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-            <Link href="https://wa.me/919535704871?text=Hi%2C%20I%20want%20to%20visit%20your%20driving%20school%20office">
-              <Button variant="whatsapp" size="lg" className="w-full sm:w-auto gap-2">
-                <MessageCircle className="w-5 h-5" />
-                Schedule Office Visit
-              </Button>
-            </Link>
-            <Link href="tel:+919535704871">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-white border-2 border-white hover:bg-white hover:text-primary transition-all">
-                Call +91 95357 04871
-              </Button>
-            </Link>
+                {/* Caption overlay */}
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#0F172A]/70 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <span className="text-white font-semibold text-[13px]">{caption}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-14 bg-white border-t border-[#F3F4F6]">
+        <div className="container text-center max-w-xl">
+          <h2 className="font-heading font-bold text-[#0F172A] text-[22px] mb-3">
+            Want to see the school in person?
+          </h2>
+          <p className="text-[#6B7280] text-[15px] mb-7">
+            Come visit us at Jalahalli Cross. We're open every day from 6 AM to 8 PM.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/contact"
+              className="px-6 py-3 rounded-xl bg-[#2563EB] text-white font-semibold text-[14px] hover:bg-[#1d4ed8] transition-colors inline-flex items-center gap-2 justify-center"
+            >
+              Get Directions
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+            <a
+              href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20visit%20OM%20Shiva%20Driving%20School"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-xl border border-[#E5E7EB] text-[#374151] font-semibold text-[14px] hover:bg-[#F9FAFB] transition-colors"
+            >
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
