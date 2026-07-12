@@ -1,4 +1,5 @@
 import { Clock, MapPin, Shield, GraduationCap, Star, FileText } from "lucide-react";
+import { SectionHeading } from "@/components/velora/SectionHeading";
 
 const reasons = [
   {
@@ -41,21 +42,13 @@ export function WhyChooseUsSection() {
       aria-labelledby="why-us-heading"
     >
       <div className="container">
-        <div className="max-w-2xl mx-auto text-center mb-14">
-          <div className="section-label justify-center">
-            <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-            Why Choose Us
-            <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-          </div>
-          <h2 id="why-us-heading" className="section-title">
-            Not Just Another
-            <br />Driving School
-          </h2>
-          <p className="section-body mx-auto mt-4">
-            There are dozens of driving schools in Bangalore. Here's why
-            students consistently recommend us.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Why Choose Us"
+          title={<>Not Just Another<br />Driving School</>}
+          description="There are dozens of driving schools in Bangalore. Here's why students consistently recommend us."
+          align="center"
+          className="mb-14 mx-auto"
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map(({ icon: Icon, title, desc }) => (

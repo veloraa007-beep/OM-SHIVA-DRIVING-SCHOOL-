@@ -12,7 +12,7 @@ const items = [
 export function TrustBar() {
   return (
     <section
-      className="bg-[#0F172A] py-5 overflow-hidden"
+      className="bg-[#0F172A] velora-py-trust overflow-hidden"
       aria-label="Key trust indicators"
     >
       <div className="container">

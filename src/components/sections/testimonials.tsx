@@ -1,4 +1,6 @@
-import { Star, ExternalLink } from "lucide-react";
+import { ExternalLink, Star } from "lucide-react";
+import { SectionHeading } from "@/components/velora/SectionHeading";
+import { GoogleReview } from "@/components/velora/GoogleReview";
 
 const reviews = [
   {
@@ -38,21 +40,16 @@ export function TestimonialsSection() {
   return (
     <section
       id="reviews"
-      className="section-py bg-white"
+      className="velora-py-about bg-white"
       aria-labelledby="reviews-heading"
     >
       <div className="container">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
-          <div>
-            <div className="section-label">
-              <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-              Google Reviews
-            </div>
-            <h2 id="reviews-heading" className="section-title">
-              Real Stories.
-              <br />Real Confidence.
-            </h2>
-          </div>
+          <SectionHeading
+            eyebrow="Google Reviews"
+            title={<>Real Stories.<br />Real Confidence.</>}
+            className="mb-0"
+          />
           <a
             href="https://maps.app.goo.gl/XbrbyazA2uuoGAry9"
             target="_blank"
@@ -81,28 +78,15 @@ export function TestimonialsSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map(({ name, initial, rating, text, date }) => (
-            <blockquote
+            <GoogleReview
               key={name}
-              className="card card-shadow p-6 flex flex-col"
-              aria-label={`Review by ${name}`}
-            >
-              <StarRating count={rating} />
-              <p className="text-[#374151] text-[14px] leading-relaxed mt-4 mb-5 flex-1">
-                "{text}"
-              </p>
-              <footer className="flex items-center gap-3 border-t border-[#F3F4F6] pt-4">
-                <div
-                  className="w-9 h-9 rounded-full bg-[#EFF6FF] flex items-center justify-center font-heading font-bold text-[#2563EB] text-[14px] flex-shrink-0"
-                  aria-hidden="true"
-                >
-                  {initial}
-                </div>
-                <div>
-                  <div className="font-semibold text-[#0F172A] text-[13px]">{name}</div>
-                  <div className="text-[11px] text-[#9CA3AF]">{date} · Google Review</div>
-                </div>
-              </footer>
-            </blockquote>
+              author={name}
+              avatar={`https://ui-avatars.com/api/?name=${initial}&background=EFF6FF&color=2563EB`}
+              date={date}
+              rating={rating}
+              snippet={text}
+              sourceUrl="https://maps.app.goo.gl/XbrbyazA2uuoGAry9"
+            />
           ))}
         </div>
       </div>

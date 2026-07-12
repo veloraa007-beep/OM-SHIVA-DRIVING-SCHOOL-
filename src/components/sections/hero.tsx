@@ -5,11 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MapPin, Star, Shield, Users } from "lucide-react";
+import { VeloraButton } from "@/components/velora/VeloraButton";
+import { AnimatedCounter } from "@/components/velora/AnimatedCounter";
 
 const stats = [
-  { value: "4.9★", label: "Google Rating",   icon: Star },
-  { value: "200+", label: "Happy Students",   icon: Users },
-  { value: "20+",  label: "Years Training",   icon: Shield },
+  { value: 4.9, suffix: "★", label: "Google Rating",   icon: Star, isDecimal: true },
+  { value: 200, suffix: "+", label: "Happy Students",   icon: Users, isDecimal: false },
+  { value: 20,  suffix: "+", label: "Years Training",   icon: Shield, isDecimal: false },
 ];
 
 export function HeroSection() {
@@ -42,7 +44,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-white via-white/90 to-blue-50/60 pointer-events-none" aria-hidden="true" />
 
       {/* ── Content ── */}
-      <div className="container relative z-10 flex-1 flex flex-col lg:flex-row items-center gap-12 pt-[120px] pb-20 lg:pt-[140px]">
+      <div className="container relative z-10 flex-1 flex flex-col lg:flex-row items-center gap-12 velora-py-hero">
 
         {/* Left — Text */}
         <motion.div
@@ -91,33 +93,38 @@ export function HeroSection() {
 
           {/* CTA Row */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-10">
-            <a
+            <VeloraButton
               href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20book%20a%20driving%20class"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#2563EB] text-white text-[15px] font-semibold hover:bg-[#1d4ed8] active:scale-[0.98] transition-all shadow-lg shadow-blue-200"
+              variant="primary"
+              size="lg"
+              icon
+              shadow
             >
               Book a Free Demo Class
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
-            </a>
-            <Link
+            </VeloraButton>
+            <VeloraButton
               href="/courses"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-[#E5E7EB] text-[#374151] text-[15px] font-semibold hover:bg-[#F9FAFB] hover:border-[#D1D5DB] active:scale-[0.98] transition-all bg-white"
+              variant="outline"
+              size="lg"
             >
               View Courses
-            </Link>
+            </VeloraButton>
           </div>
 
           {/* Stats */}
           <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-[#F3F4F6]">
-            {stats.map(({ value, label, icon: Icon }) => (
+            {stats.map(({ value, suffix, label, icon: Icon, isDecimal }) => (
               <div key={label} className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
                   <Icon className="w-4 h-4 text-[#2563EB]" aria-hidden="true" />
                 </div>
                 <div>
                   <div className="font-numbers font-bold text-[#0F172A] text-[15px] leading-none">
-                    {value}
+                    {isDecimal ? `${value}${suffix}` : (
+                      <AnimatedCounter value={value} suffix={suffix} duration={1.5} />
+                    )}
                   </div>
                   <div className="text-[11px] text-[#9CA3AF] font-medium mt-0.5">{label}</div>
                 </div>
@@ -137,7 +144,7 @@ export function HeroSection() {
           {/* Main Image Frame */}
           <div className="relative rounded-3xl overflow-hidden aspect-[4/3] bg-[#F3F4F6] shadow-2xl shadow-slate-200/60 border border-white ring-1 ring-[#E5E7EB]">
             <Image
-              src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=90"
+              src="/illustration_car.jpg"
               alt="Driving instructor teaching a student in a modern car on the streets of Bangalore"
               fill
               className="object-cover"

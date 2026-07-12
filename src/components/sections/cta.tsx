@@ -1,4 +1,6 @@
-import { ArrowRight, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+import { SectionHeading } from "@/components/velora/SectionHeading";
+import { VeloraButton } from "@/components/velora/VeloraButton";
 
 export function CTASection() {
   return (
@@ -14,42 +16,36 @@ export function CTASection() {
             <span className="text-xs font-semibold text-white/80">4.9★ · 200+ Google Reviews · Peenya, Bangalore</span>
           </div>
 
-          <h2
-            id="cta-heading"
-            className="font-heading font-extrabold text-white leading-tight tracking-[-0.03em] mb-5"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          >
-            Ready to start driving?
-            <br />
-            <span className="text-[#2563EB]">Book your first class today.</span>
-          </h2>
-
-          <p className="text-white/60 text-[1rem] leading-relaxed max-w-xl mx-auto mb-10">
-            No paperwork. No upfront hassle. Just tell us your preferred timing
-            and we'll take it from there. Your first demo class is free.
-          </p>
+          <SectionHeading
+            theme="dark"
+            title={<>Ready to start driving?<br /><span className="text-[#2563EB]">Book your first class today.</span></>}
+            description="No paperwork. No upfront hassle. Just tell us your preferred timing and we'll take it from there. Your first demo class is free."
+            align="center"
+            className="mb-10 mx-auto"
+          />
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
-            <a
+            <VeloraButton
               href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20demo%20driving%20class"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#2563EB] text-white text-[15px] font-semibold hover:bg-[#1d4ed8] active:scale-[0.98] transition-all shadow-xl shadow-blue-900/40"
+              variant="primary"
+              size="lg"
+              icon
+              shadow
             >
               Book a Free Demo Class
-              <ArrowRight
-                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
-                aria-hidden="true"
-              />
-            </a>
-            <a
+            </VeloraButton>
+            <VeloraButton
               href="tel:+919902295515"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 text-white text-[15px] font-semibold hover:bg-white/10 active:scale-[0.98] transition-all"
+              variant="outline"
+              size="lg"
+              icon={<Phone className="w-4 h-4 ml-2" />}
+              className="border-white/20 text-white hover:bg-white/10 hover:border-white/30"
               aria-label="Call us at +91 99022 95515"
             >
-              <Phone className="w-4 h-4" aria-hidden="true" />
               +91 99022 95515
-            </a>
+            </VeloraButton>
           </div>
         </div>
       </div>

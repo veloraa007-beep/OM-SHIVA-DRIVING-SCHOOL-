@@ -13,13 +13,20 @@
   --color-warning: #F59E0B;
   --color-error: #EF4444;
   --color-text: #111827;
-  --color-muted: #6B7280;
+  --color-muted: #64748B;
   --color-border: #E5E7EB;
 
   /* Typography */
   --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "Space Grotesk", system-ui, sans-serif;
+
+  /* Custom Velora Rhythm Spacing */
+  --spacing-velora-hero: 220px;
+  --spacing-velora-trust: 80px;
+  --spacing-velora-about: 180px;
+  --spacing-velora-fleet: 120px;
+  --spacing-velora-journey: 220px;
 }
 
 /* ─── Base Reset ─── */
@@ -37,13 +44,15 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  line-height: 1.8;
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 /* ─── Selection ─── */
@@ -83,13 +92,17 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@utility section-py {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-
-  @media (min-width: 768px) {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+@layer utilities {
+  /* Velora Vertical Rhythm */
+  .velora-py-hero { padding-top: var(--spacing-velora-hero); padding-bottom: var(--spacing-velora-hero); }
+  .velora-py-trust { padding-top: var(--spacing-velora-trust); padding-bottom: var(--spacing-velora-trust); }
+  .velora-py-about { padding-top: var(--spacing-velora-about); padding-bottom: var(--spacing-velora-about); }
+  .velora-py-fleet { padding-top: var(--spacing-velora-fleet); padding-bottom: var(--spacing-velora-fleet); }
+  .velora-py-journey { padding-top: var(--spacing-velora-journey); padding-bottom: var(--spacing-velora-journey); }
+  
+  /* Fallback standard section spacing for non-hero elements */
+  .section-py {
+    @apply py-16 md:py-24;
   }
 }
 

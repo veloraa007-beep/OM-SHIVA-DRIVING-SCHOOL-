@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SectionHeading } from "@/components/velora/SectionHeading";
+import { VeloraButton } from "@/components/velora/VeloraButton";
 
 const faqs = [
   {
@@ -45,27 +47,21 @@ export function FAQSection() {
 
           {/* Left — static */}
           <div>
-            <div className="section-label">
-              <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-              FAQ
-            </div>
-            <h2 id="faq-heading" className="section-title mb-4">
-              Questions?
-              <br />We've got
-              <br />answers.
-            </h2>
-            <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6">
-              Don't see your question here? Call or WhatsApp us and we'll get
-              back to you right away.
-            </p>
-            <a
+            <SectionHeading
+              eyebrow="FAQ"
+              title={<>Questions?<br />We've got<br />answers.</>}
+              description="Don't see your question here? Call or WhatsApp us and we'll get back to you right away."
+              className="mb-6"
+            />
+            <VeloraButton
               href="https://wa.me/919902295515?text=Hi%2C%20I%20have%20a%20question%20about%20your%20driving%20school"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-[#E5E7EB] text-[#374151] text-[14px] font-semibold hover:bg-[#F9FAFB] hover:border-[#D1D5DB] transition-all"
+              variant="outline"
+              size="md"
             >
               Ask on WhatsApp
-            </a>
+            </VeloraButton>
           </div>
 
           {/* Right — accordion */}

@@ -1,6 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { SectionHeading } from "@/components/velora/SectionHeading";
+import { AnimatedCounter } from "@/components/velora/AnimatedCounter";
+import { VeloraButton } from "@/components/velora/VeloraButton";
 
 const highlights = [
   "Patient, certified instructors who adapt to your learning pace",
@@ -13,7 +15,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="section-py bg-white"
+      className="velora-py-about bg-white"
       aria-labelledby="about-heading"
     >
       <div className="container">
@@ -35,7 +37,7 @@ export function AboutSection() {
 
             {/* Floating card — experience */}
             <div className="absolute -bottom-5 -right-3 lg:-right-8 bg-white rounded-2xl p-5 shadow-xl border border-[#F3F4F6] max-w-[200px]">
-              <div className="font-numbers font-bold text-[2.5rem] text-[#2563EB] leading-none">25+</div>
+              <AnimatedCounter value={25} suffix="+" duration={2} className="text-[2.5rem] text-[#2563EB] leading-none" />
               <div className="text-[13px] font-semibold text-[#0F172A] mt-1">Years of Experience</div>
               <div className="text-[11px] text-[#9CA3AF] mt-0.5">Prakash, Head Instructor</div>
             </div>
@@ -49,17 +51,11 @@ export function AboutSection() {
 
           {/* ── Text Side ── */}
           <div className="order-1 lg:order-2">
-            <div className="section-label">
-              <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-              About Us
-            </div>
-            <h2
-              id="about-heading"
-              className="section-title mb-4"
-            >
-              North Bangalore's Most
-              <br />Trusted Driving School
-            </h2>
+            <SectionHeading 
+              eyebrow="About Us"
+              title={<>North Bangalore's Most<br />Trusted Driving School</>}
+              className="mb-4"
+            />
             <p className="section-body mb-6">
               OM Shiva Motor Driving School has been training safe, confident
               drivers in Peenya and Jalahalli for over two decades. Founded by
@@ -84,14 +80,16 @@ export function AboutSection() {
               ))}
             </ul>
 
-            <Link
+            <VeloraButton
               href="/about"
-              className="inline-flex items-center gap-2 text-[#2563EB] font-semibold text-[15px] hover:gap-3 transition-all"
+              variant="ghost"
+              size="md"
+              icon
+              className="px-0 hover:bg-transparent text-[#2563EB] hover:text-[#1d4ed8]"
               aria-label="Learn more about OM Shiva Motor Driving School"
             >
               More about us
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
+            </VeloraButton>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { SectionHeading } from "@/components/velora/SectionHeading";
+
 const steps = [
   {
     num: "01",
@@ -30,21 +32,16 @@ export function TimelineSection() {
   return (
     <section
       id="journey"
-      className="section-py bg-[#F8FAFC]"
+      className="velora-py-journey bg-[#F8FAFC]"
       aria-labelledby="journey-heading"
     >
       <div className="container">
-        <div className="max-w-2xl mx-auto text-center mb-14">
-          <div className="section-label justify-center">
-            <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-            Your Journey
-            <span className="w-5 h-px bg-[#2563EB]" aria-hidden="true" />
-          </div>
-          <h2 id="journey-heading" className="section-title">
-            From Zero to License —
-            <br />Here's How It Works
-          </h2>
-        </div>
+        <SectionHeading
+          eyebrow="Your Journey"
+          title={<>From Zero to License —<br />Here's How It Works</>}
+          align="center"
+          className="mb-14"
+        />
 
         {/* Timeline */}
         <div className="relative max-w-3xl mx-auto">
