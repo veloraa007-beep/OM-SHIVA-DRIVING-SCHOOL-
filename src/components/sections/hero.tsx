@@ -1,17 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MapPin, Star, Shield, Users } from "lucide-react";
-import { VeloraButton } from "@/components/velora/VeloraButton";
+import { MapPin, Star, Phone } from "lucide-react";
 import { AnimatedCounter } from "@/components/velora/AnimatedCounter";
 
 const stats = [
-  { value: 4.9, suffix: "★", label: "Google Rating",   icon: Star, isDecimal: true },
-  { value: 200, suffix: "+", label: "Happy Students",   icon: Users, isDecimal: false },
-  { value: 20,  suffix: "+", label: "Years Training",   icon: Shield, isDecimal: false },
+  { value: 4.9, label: "Google Rating", suffix: "★", isDecimal: true },
+  { value: 200, label: "Happy Students", suffix: "+", isDecimal: false },
+  { value: 20,  label: "Years Training", suffix: "+", isDecimal: false },
 ];
 
 export function HeroSection() {
@@ -20,188 +18,213 @@ export function HeroSection() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const imageY  = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const imageY  = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100svh] flex flex-col overflow-hidden bg-white"
-      aria-label="Hero section"
+      className="relative min-h-[100svh] flex flex-col overflow-hidden"
+      aria-label="Hero — OM Shiva Motor Driving School"
     >
-      {/* ── Background Grid ── */}
+      {/* ── Full-bleed background photo with parallax ── */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: imageY }}
+      >
+        <Image
+          src="/hero_lesson.png"
+          alt="Young female student confidently learning to drive with a patient instructor at OM Shiva Motor Driving School, Peenya Bangalore"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
+          unoptimized
+        />
+      </motion.div>
+
+      {/* ── Gradient overlays ── */}
+      {/* Left-to-right dark gradient — covers text area */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-10 pointer-events-none"
         aria-hidden="true"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, #F3F4F6 1px, transparent 1px),
-            linear-gradient(to bottom, #F3F4F6 1px, transparent 1px)
-          `,
-          backgroundSize: "72px 72px",
+          background:
+            "linear-gradient(to right, rgba(15,23,42,0.97) 0%, rgba(15,23,42,0.92) 38%, rgba(15,23,42,0.60) 62%, rgba(15,23,42,0.10) 100%)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-white/90 to-blue-50/60 pointer-events-none" aria-hidden="true" />
+      {/* Bottom fade */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "linear-gradient(to top, rgba(15,23,42,0.5) 0%, transparent 100%)",
+        }}
+      />
+      {/* Top vignette */}
+      <div
+        className="absolute top-0 left-0 right-0 h-32 z-10 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "linear-gradient(to bottom, rgba(15,23,42,0.4) 0%, transparent 100%)",
+        }}
+      />
+
+      {/* ── Dot-grid texture (left half only) ── */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          backgroundSize: "30px 30px",
+          maskImage: "linear-gradient(to right, black 0%, black 35%, transparent 65%)",
+          WebkitMaskImage: "linear-gradient(to right, black 0%, black 35%, transparent 65%)",
+        }}
+      />
 
       {/* ── Content ── */}
-      <div className="container relative z-10 flex-1 flex flex-col lg:flex-row items-center gap-12 velora-py-hero">
+      <div className="container relative z-20 flex-1 flex items-center velora-py-hero">
+        <div className="max-w-[580px]">
 
-        {/* Left — Text */}
-        <motion.div
-          className="flex-1 flex flex-col justify-center"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {/* Location Pill */}
-          <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6">
-            <MapPin className="w-3.5 h-3.5 text-[#2563EB]" aria-hidden="true" />
-            <span className="text-xs font-semibold text-[#2563EB]">
+          {/* Location pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm mb-8"
+          >
+            <MapPin className="w-3.5 h-3.5 text-blue-400" aria-hidden="true" />
+            <span className="text-[11px] font-bold text-white/70 tracking-widest uppercase">
               Peenya · Jalahalli · North Bangalore
             </span>
-          </div>
+          </motion.div>
 
-          {/* Heading */}
-          <h1 className="font-heading font-extrabold text-[#0F172A] leading-[1.08] tracking-[-0.04em] mb-6">
+          {/* Headline */}
+          <motion.h1
+            className="font-heading font-black text-white leading-[1.04] tracking-[-0.045em] mb-6"
+            style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Drive with
+            <br />
+            <span className="text-[#3B82F6]">Confidence.</span>
+            <br />
             <span
-              className="block"
-              style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}
+              className="text-white/45 font-semibold"
+              style={{ fontSize: "clamp(1.3rem, 2.2vw, 1.85rem)" }}
             >
-              Drive with
+              Bangalore's most trusted
+              <br className="hidden sm:block" /> driving school.
             </span>
-            <span
-              className="block text-[#2563EB]"
-              style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}
-            >
-              Confidence.
-            </span>
-            <span
-              className="block text-[#0F172A]/60 font-semibold mt-1"
-              style={{ fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)" }}
-            >
-              Learn at Bangalore's Most
-              <br className="hidden sm:block" /> Trusted Driving School.
-            </span>
-          </h1>
+          </motion.h1>
 
           {/* Body */}
-          <p className="text-[#6B7280] text-[1.05rem] leading-relaxed max-w-xl mb-8">
+          <motion.p
+            className="text-white/60 text-[1.05rem] leading-relaxed max-w-md mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+          >
             Patient instructors, modern dual-control cars, and complete RTO
-            assistance — everything you need to go from learner to licensed, with
-            zero stress.
-          </p>
+            assistance — everything you need to go from learner to licensed,
+            with zero stress.
+          </motion.p>
 
-          {/* CTA Row */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-10">
-            <VeloraButton
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-12"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <a
               href="https://wa.me/919902295515?text=Hi%2C%20I%27d%20like%20to%20book%20a%20driving%20class"
               target="_blank"
               rel="noopener noreferrer"
-              variant="primary"
-              size="lg"
-              icon
-              shadow
+              className="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-xl bg-[#2563EB] text-white text-[15px] font-bold hover:bg-[#1d4ed8] active:bg-[#1e40af] transition-all shadow-xl shadow-blue-900/50"
             >
               Book a Free Demo Class
-            </VeloraButton>
-            <VeloraButton
-              href="/courses"
-              variant="outline"
-              size="lg"
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+            <a
+              href="tel:+919902295515"
+              className="inline-flex items-center justify-center gap-2 h-14 px-7 rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm text-white text-[15px] font-semibold hover:bg-white/12 transition-all"
             >
-              View Courses
-            </VeloraButton>
-          </div>
+              <Phone className="w-4 h-4" aria-hidden="true" />
+              +91 99022 95515
+            </a>
+          </motion.div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-[#F3F4F6]">
-            {stats.map(({ value, suffix, label, icon: Icon, isDecimal }) => (
-              <div key={label} className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4 text-[#2563EB]" aria-hidden="true" />
-                </div>
+          {/* Stats strip */}
+          <motion.div
+            className="flex items-center gap-8 pt-8 border-t border-white/12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.36, ease: "easeOut" }}
+          >
+            {stats.map(({ value, label, suffix, isDecimal }, i) => (
+              <div key={label} className="flex items-center gap-3">
+                {i > 0 && (
+                  <span className="w-px h-8 bg-white/12 flex-shrink-0" aria-hidden="true" />
+                )}
                 <div>
-                  <div className="font-numbers font-bold text-[#0F172A] text-[15px] leading-none">
+                  <div className="font-numbers font-black text-white leading-none"
+                    style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+                  >
                     {isDecimal ? `${value}${suffix}` : (
-                      <AnimatedCounter value={value} suffix={suffix} duration={1.5} />
+                      <AnimatedCounter value={value} suffix={suffix} duration={1.8}
+                        className="text-white" style={{ fontSize: "inherit" }}
+                      />
                     )}
                   </div>
-                  <div className="text-[11px] text-[#9CA3AF] font-medium mt-0.5">{label}</div>
+                  <div className="text-[11px] text-white/40 font-medium mt-0.5 tracking-wide">{label}</div>
                 </div>
               </div>
             ))}
-          </div>
-        </motion.div>
-
-        {/* Right — Image */}
-        <motion.div
-          className="flex-1 w-full lg:max-w-[560px] relative"
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          style={{ y: imageY }}
-        >
-          {/* Main Image Frame */}
-          <div className="relative rounded-3xl overflow-hidden aspect-[4/3] bg-[#F3F4F6] shadow-2xl shadow-slate-200/60 border border-white ring-1 ring-[#E5E7EB]">
-            <Image
-              src="/illustration_car.jpg"
-              alt="Driving instructor teaching a student in a modern car on the streets of Bangalore"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 560px"
-              unoptimized
-            />
-            {/* Overlay gradient for card legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/30 to-transparent" aria-hidden="true" />
-
-            {/* Floating Review Card */}
-            <motion.div
-              className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 shadow-lg border border-white/60"
-              initial={{ y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 text-lg font-heading font-bold text-[#2563EB]">
-                F
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-1 mb-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" aria-hidden="true" />
-                  ))}
-                </div>
-                <p className="text-[12px] text-[#374151] font-medium leading-snug truncate">
-                  "Got my license with confidence. Highly recommended!"
-                </p>
-                <p className="text-[10px] text-[#9CA3AF] mt-0.5">Faheem Bagalkot · Google Review</p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Decorative blob */}
-          <div
-            className="absolute -top-8 -right-8 w-48 h-48 rounded-full bg-blue-100/60 blur-3xl -z-10 pointer-events-none"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute -bottom-8 -left-8 w-40 h-40 rounded-full bg-blue-50/80 blur-3xl -z-10 pointer-events-none"
-            aria-hidden="true"
-          />
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* ── Scroll Indicator ── */}
+      {/* ── Floating review card — bottom right of viewport ── */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10"
+        className="absolute bottom-8 right-6 z-30 hidden md:flex items-center gap-3 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3.5 shadow-2xl border border-white/60 max-w-[280px]"
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        aria-label="Featured student review"
+      >
+        <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center font-heading font-black text-[#2563EB] text-sm flex-shrink-0">
+          F
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1 mb-0.5">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" aria-hidden="true" />
+            ))}
+            <span className="text-[9px] text-[#9CA3AF] ml-1 font-medium uppercase tracking-wide">Google</span>
+          </div>
+          <p className="text-[12px] text-[#374151] font-semibold leading-snug line-clamp-2">
+            "Got my license with confidence. Highly recommended!"
+          </p>
+          <p className="text-[10px] text-[#9CA3AF] mt-0.5">Faheem Bagalkot</p>
+        </div>
+      </motion.div>
+
+      {/* ── Scroll indicator ── */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-20"
         style={{ opacity }}
         aria-hidden="true"
       >
-        <span className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-widest">Scroll</span>
+        <span className="text-[9px] font-semibold text-white/30 uppercase tracking-[0.22em]">Scroll</span>
         <motion.div
-          className="w-0.5 h-8 bg-gradient-to-b from-[#9CA3AF] to-transparent rounded-full"
-          animate={{ scaleY: [0.4, 1, 0.4] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="w-px h-7 bg-gradient-to-b from-white/30 to-transparent rounded-full"
+          animate={{ scaleY: [0.3, 1, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
     </section>

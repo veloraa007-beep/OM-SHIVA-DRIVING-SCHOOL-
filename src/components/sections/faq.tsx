@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/velora/SectionHeading";
-import { VeloraButton } from "@/components/velora/VeloraButton";
 
 const faqs = [
   {
@@ -39,34 +38,34 @@ export function FAQSection() {
   return (
     <section
       id="faq"
-      className="section-py bg-[#F8FAFC]"
+      className="section-py bg-white"
       aria-labelledby="faq-heading"
     >
       <div className="container">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
 
-          {/* Left — static */}
-          <div>
+          {/* Left — sticky heading */}
+          <div className="lg:sticky lg:top-32">
             <SectionHeading
+              id="faq-heading"
               eyebrow="FAQ"
               title={<>Questions?<br />We've got<br />answers.</>}
-              description="Don't see your question here? Call or WhatsApp us and we'll get back to you right away."
-              className="mb-6"
+              description="Don't see your question here? Call or WhatsApp us — we respond quickly."
+              className="mb-7"
             />
-            <VeloraButton
+            <a
               href="https://wa.me/919902295515?text=Hi%2C%20I%20have%20a%20question%20about%20your%20driving%20school"
               target="_blank"
               rel="noopener noreferrer"
-              variant="outline"
-              size="md"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#E5E7EB] text-[#0F172A] text-[14px] font-semibold hover:border-[#0F172A] hover:bg-[#F8FAFC] transition-all"
             >
               Ask on WhatsApp
-            </VeloraButton>
+            </a>
           </div>
 
           {/* Right — accordion */}
           <div
-            className="space-y-3"
+            className="space-y-2"
             role="list"
             aria-label="Frequently asked questions"
           >
@@ -74,10 +73,10 @@ export function FAQSection() {
               <div
                 key={q}
                 className={cn(
-                  "bg-white rounded-2xl border transition-all duration-200",
+                  "bg-[#F8FAFC] rounded-2xl border transition-all duration-200",
                   open === i
-                    ? "border-[#BFDBFE] shadow-sm shadow-blue-100/50"
-                    : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+                    ? "border-[#2563EB]/30 bg-white shadow-sm shadow-blue-50"
+                    : "border-transparent hover:border-[#E5E7EB] hover:bg-white"
                 )}
                 role="listitem"
               >
@@ -91,25 +90,30 @@ export function FAQSection() {
                   <span className="font-heading font-semibold text-[#0F172A] text-[15px] leading-snug">
                     {q}
                   </span>
-                  <ChevronDown
+                  <span
                     className={cn(
-                      "w-5 h-5 text-[#9CA3AF] flex-shrink-0 transition-transform duration-200",
-                      open === i && "rotate-180 text-[#2563EB]"
+                      "w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200",
+                      open === i
+                        ? "bg-[#2563EB] text-white rotate-180"
+                        : "bg-[#F1F5F9] text-[#9CA3AF]"
                     )}
                     aria-hidden="true"
-                  />
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </span>
                 </button>
 
                 <div
                   id={`faq-answer-${i}`}
                   role="region"
                   aria-labelledby={`faq-question-${i}`}
-                  className={cn(
-                    "overflow-hidden transition-all duration-300",
-                    open === i ? "max-h-60" : "max-h-0"
-                  )}
+                  className="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out"
+                  style={{
+                    maxHeight: open === i ? "300px" : "0px",
+                    opacity: open === i ? 1 : 0,
+                  }}
                 >
-                  <p className="px-6 pb-5 text-[#6B7280] text-[14px] leading-relaxed">
+                  <p className="px-6 pb-6 text-[#6B7280] text-[14px] leading-relaxed">
                     {a}
                   </p>
                 </div>
