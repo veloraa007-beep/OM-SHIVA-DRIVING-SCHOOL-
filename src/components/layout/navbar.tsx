@@ -87,12 +87,15 @@ export function Navbar() {
               <span
                 className={cn(
                   "font-heading font-black text-[22px] tracking-tight transition-colors duration-300",
-                  scrolled ? "text-[#0F172A]" : "text-[#0F172A]"
+                  scrolled ? "text-[#0F172A]" : "text-white"
                 )}
               >
                 OM SHIVA<span className="text-[#3B82F6]">.</span>
               </span>
-              <span className="text-[10px] font-semibold tracking-[0.2em] text-[#6B7280] mt-0.5">
+              <span className={cn(
+                "text-[10px] font-semibold tracking-[0.2em] mt-0.5 transition-colors duration-300",
+                scrolled ? "text-[#6B7280]" : "text-white/50"
+              )}>
                 MOTOR DRIVING SCHOOL
               </span>
             </div>
@@ -108,9 +111,13 @@ export function Navbar() {
                   href={href}
                   className={cn(
                     "relative px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200",
-                    active
-                      ? "text-[#2563EB] bg-blue-50"
-                      : "text-[#374151] hover:text-[#0F172A] hover:bg-[#F9FAFB]"
+                    scrolled
+                      ? active
+                        ? "text-[#2563EB] bg-blue-50/80"
+                        : "text-[#374151] hover:text-[#0F172A] hover:bg-[#F3F4F6]"
+                      : active
+                        ? "text-white bg-white/10 backdrop-blur-sm"
+                        : "text-white/75 hover:text-white hover:bg-white/8"
                   )}
                   aria-current={active ? "page" : undefined}
                 >
@@ -118,7 +125,10 @@ export function Navbar() {
                   {active && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute bottom-0.5 left-3.5 right-3.5 h-[2px] bg-[#2563EB] rounded-full"
+                      className={cn(
+                        "absolute bottom-0.5 left-3.5 right-3.5 h-[2px] rounded-full",
+                        scrolled ? "bg-[#2563EB]" : "bg-white/60"
+                      )}
                     />
                   )}
                 </Link>
@@ -130,7 +140,10 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="tel:+919902295515"
-              className="flex items-center gap-2 text-[13px] font-semibold text-[#374151] hover:text-[#0F172A] transition-colors"
+              className={cn(
+                "flex items-center gap-2 text-[13px] font-semibold transition-colors",
+                scrolled ? "text-[#374151] hover:text-[#0F172A]" : "text-white/70 hover:text-white"
+              )}
               aria-label="Call us"
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
@@ -149,7 +162,12 @@ export function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg hover:bg-[#F3F4F6] text-[#374151] transition-colors"
+            className={cn(
+              "lg:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors",
+              scrolled
+                ? "hover:bg-[#F3F4F6] text-[#374151]"
+                : "hover:bg-white/10 text-white"
+            )}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
