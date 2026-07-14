@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Star, Quote } from "lucide-react";
 import { SectionHeading } from "@/components/velora/SectionHeading";
 
@@ -11,7 +12,6 @@ const reviews = [
     rating: 5,
     date: "Recent",
     text: "Thanks to OM Shiva Driving School, I got my driving license and learned driving with confidence. The instructor was very supportive and taught me all the important driving skills patiently. The entire process was smooth and hassle-free. Highly recommended!",
-    featured: true,
   },
   {
     name: "Ranjitha G",
@@ -19,7 +19,6 @@ const reviews = [
     rating: 5,
     date: "Recent",
     text: "I had a very good experience learning driving at this school. The instructor was calm, supportive, and explained traffic rules clearly. They helped me practice in different road conditions, which improved my confidence. Highly recommend.",
-    featured: false,
   },
   {
     name: "Hemu Nekar",
@@ -27,8 +26,28 @@ const reviews = [
     rating: 5,
     date: "Recent",
     text: "Good experience, safe driving, well learned plus friendly trainer. Prakash sir is a very well-trained instructor with a well-maintained brand new car. I would suggest OM Shiva Driving School as the best option for all new people.",
-    featured: false,
   },
+  {
+    name: "Sachin Kumar",
+    initial: "S",
+    rating: 5,
+    date: "Recent",
+    text: "Excellent teaching methodology. The instructor was very professional and helped me conquer my fear of driving in Bangalore traffic. The flexible timings were a huge plus for my work schedule.",
+  },
+  {
+    name: "Divya S",
+    initial: "D",
+    rating: 5,
+    date: "Recent",
+    text: "I had zero experience before joining OM Shiva Driving School. Within 15 days, I was able to drive comfortably. They handle the entire DL process smoothly as well. Very professional and polite.",
+  },
+  {
+    name: "Rahul P",
+    initial: "R",
+    rating: 5,
+    date: "Recent",
+    text: "Great experience! The cars are in good condition and dual controlled, which made me feel very safe during my initial classes. Thank you for the excellent service!",
+  }
 ];
 
 function Stars({ count }: { count: number }) {
@@ -51,8 +70,20 @@ const GoogleLogo = () => (
 );
 
 export function TestimonialsSection() {
-  const featured = reviews.find((r) => r.featured)!;
-  const secondary = reviews.filter((r) => !r.featured);
+  const [startIndex, setStartIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setStartIndex((prev) => (prev + 1) % reviews.length);
+    }, 6000); // Rotate every 6 seconds
+    return () => clearInterval(timer);
+  }, []);
+
+  const featured = reviews[startIndex];
+  const secondary = [
+    reviews[(startIndex + 1) % reviews.length],
+    reviews[(startIndex + 2) % reviews.length],
+  ];
 
   return (
     <section
@@ -95,67 +126,72 @@ export function TestimonialsSection() {
         </div>
 
         {/* Reviews layout: 1 featured large + 2 secondary stacked */}
-        <motion.div
-          className="grid lg:grid-cols-[1.6fr_1fr] gap-6"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {/* Featured review */}
-          <article
-            className="bg-white rounded-3xl p-8 lg:p-10 border border-[#E5E7EB] shadow-sm flex flex-col"
-            aria-label={`Review by ${featured.name}`}
-          >
-            <Quote className="w-10 h-10 text-blue-100 mb-5 flex-shrink-0" aria-hidden="true" />
-            <p className="text-[#374151] text-[1.1rem] leading-relaxed flex-grow mb-6 font-medium">
-              "{featured.text}"
-            </p>
-            <div className="flex items-center justify-between flex-wrap gap-4 pt-6 border-t border-[#F3F4F6]">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center font-heading font-black text-[#2563EB] text-base flex-shrink-0">
-                  {featured.initial}
-                </div>
-                <div>
-                  <div className="font-bold text-[#0F172A] text-[14px]">{featured.name}</div>
-                  <div className="text-[11px] text-[#9CA3AF] mt-0.5">{featured.date} · Google Review</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Stars count={featured.rating} />
-                <GoogleLogo />
-              </div>
-            </div>
-          </article>
-
-          {/* Secondary reviews */}
-          <div className="flex flex-col gap-6">
-            {secondary.map(({ name, initial, rating, date, text }) => (
+        <div className="relative min-h-[400px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={startIndex}
+              className="grid lg:grid-cols-[1.6fr_1fr] gap-6"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {/* Featured review */}
               <article
-                key={name}
-                className="bg-white rounded-3xl p-6 border border-[#E5E7EB] shadow-sm flex flex-col flex-1"
-                aria-label={`Review by ${name}`}
+                className="bg-white rounded-3xl p-8 lg:p-10 border border-[#E5E7EB] shadow-sm flex flex-col h-full"
+                aria-label={`Review by ${featured.name}`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center font-heading font-black text-[#2563EB] text-sm flex-shrink-0">
-                      {initial}
+                <Quote className="w-10 h-10 text-blue-100 mb-5 flex-shrink-0" aria-hidden="true" />
+                <p className="text-[#374151] text-[1.1rem] leading-relaxed flex-grow mb-6 font-medium">
+                  "{featured.text}"
+                </p>
+                <div className="flex items-center justify-between flex-wrap gap-4 pt-6 border-t border-[#F3F4F6]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center font-heading font-black text-[#2563EB] text-base flex-shrink-0">
+                      {featured.initial}
                     </div>
                     <div>
-                      <div className="font-bold text-[#0F172A] text-[13px]">{name}</div>
-                      <div className="text-[10px] text-[#9CA3AF]">{date}</div>
+                      <div className="font-bold text-[#0F172A] text-[14px]">{featured.name}</div>
+                      <div className="text-[11px] text-[#9CA3AF] mt-0.5">{featured.date} · Google Review</div>
                     </div>
                   </div>
-                  <GoogleLogo />
+                  <div className="flex items-center gap-2">
+                    <Stars count={featured.rating} />
+                    <GoogleLogo />
+                  </div>
                 </div>
-                <Stars count={rating} />
-                <p className="text-[#6B7280] text-[13px] leading-relaxed mt-3 flex-grow line-clamp-4">
-                  "{text}"
-                </p>
               </article>
-            ))}
-          </div>
-        </motion.div>
+
+              {/* Secondary reviews */}
+              <div className="flex flex-col gap-6">
+                {secondary.map(({ name, initial, rating, date, text }) => (
+                  <article
+                    key={name}
+                    className="bg-white rounded-3xl p-6 border border-[#E5E7EB] shadow-sm flex flex-col flex-1"
+                    aria-label={`Review by ${name}`}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center font-heading font-black text-[#2563EB] text-sm flex-shrink-0">
+                          {initial}
+                        </div>
+                        <div>
+                          <div className="font-bold text-[#0F172A] text-[13px]">{name}</div>
+                          <div className="text-[10px] text-[#9CA3AF]">{date}</div>
+                        </div>
+                      </div>
+                      <GoogleLogo />
+                    </div>
+                    <Stars count={rating} />
+                    <p className="text-[#6B7280] text-[13px] leading-relaxed mt-3 flex-grow line-clamp-4">
+                      "{text}"
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

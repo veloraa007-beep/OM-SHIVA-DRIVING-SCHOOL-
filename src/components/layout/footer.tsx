@@ -150,9 +150,9 @@ export function Footer() {
               href="https://velora-sandy.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[12px] text-white/40 hover:text-white/80 transition-colors"
+              className="text-base font-bold text-white tracking-wide hover:text-[#3B82F6] transition-colors flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10"
             >
-              Built by Velora
+              Built by Velora 🚀
             </a>
           </div>
         </div>
